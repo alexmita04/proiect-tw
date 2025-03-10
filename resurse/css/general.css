@@ -1,0 +1,102 @@
+body {
+  --spatiere-pagina: 70px;
+  --spatiere-zone: 30px;
+  --albastru1: #8ecae6;
+  --albastru2: #219ebc;
+  --albastru3: #023047;
+  --portocaliu1: #ffb703;
+  --portocaliu2: #fb8500;
+}
+
+header {
+  background-color: var(--portocaliu1);
+  border: solid 3px var(--albastru3);
+  border-radius: 10px;
+}
+
+main {
+  padding-left: var(--spatiere-pagina);
+  padding-right: var(--spatiere-pagina);
+  background-color: var(--albastru1);
+  border: solid 2px var(--portocaliu2);
+  border-radius: 20px;
+}
+
+#grid-pagina {
+  display: grid;
+  grid-template-areas:
+    "despre despre meciuri"
+    "despre despre bilete"
+    "informatii informatii informatii"
+    "contact contact contact";
+  gap: 30px;
+}
+
+#despre {
+  grid-area: despre;
+  padding-left: var(--spatiere-zone);
+  padding-right: var(--spatiere-zone);
+}
+
+#meciuri {
+  grid-area: meciuri;
+  padding-left: var(--spatiere-zone);
+  padding-right: var(--spatiere-zone);
+}
+
+#bilete {
+  grid-area: bilete;
+  padding-left: var(--spatiere-zone);
+  padding-right: var(--spatiere-zone);
+}
+
+#informatii {
+  grid-area: informatii;
+  padding-left: var(--spatiere-zone);
+  padding-right: var(--spatiere-zone);
+}
+
+.container-iframe iframe {
+  min-width: 300px;
+  max-width: 700px;
+}
+
+#imagine-real-barca {
+  max-width: 1000px;
+  min-width: 300px;
+  height: 100%;
+}
+
+#contact {
+  grid-area: contact;
+  padding-left: var(--spatiere-zone);
+  padding-right: var(--spatiere-zone);
+}
+
+footer {
+  background-color: var(--portocaliu1);
+  border: solid 3px var(--albastru3);
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 1400px) {
+  body {
+    --spatiere-pagina: 50px;
+  }
+
+  #grid-pagina {
+    display: block;
+    /* background-color: black; */
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  body {
+    --spatiere-pagina: 30px;
+  }
+
+  #grid-pagina {
+    gap: 10px;
+  }
+}
