@@ -13,6 +13,16 @@
       content="Cumpara bilete la meciurile tale preferate de fotbal."
     />
     <meta name="author" content="Mita Alexandru" />
+    <script
+      src="https://kit.fontawesome.com/26ce7036e2.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./resurse/css/general.css" />
   </head>
   <body>
@@ -57,11 +67,50 @@
 
         <section id="meciuri">
           <h2>Meciurile viitoare</h2>
-          <ul>
-            <li><i>Champions League</i></li>
-            <li><i>Europa League</i></li>
-            <li>Liga 1</li>
-          </ul>
+          <div class="tabel-container">
+            <table border="1">
+              <caption>
+                Lista celor mai importante meciuri programate
+              </caption>
+              <thead>
+                <tr>
+                  <th>Competiție</th>
+                  <th>Echipe</th>
+                  <th>Data</th>
+                  <th>Stadion</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td rowspan="2"><i>Champions League</i></td>
+                  <td>Real Madrid vs. PSG</td>
+                  <td>10 Aprilie 2025</td>
+                  <td>Santiago Bernabéu</td>
+                </tr>
+                <tr>
+                  <td>Manchester City vs. Bayern</td>
+                  <td>11 Aprilie 2025</td>
+                  <td>Etihad Stadium</td>
+                </tr>
+                <tr>
+                  <td><i>Europa League</i></td>
+                  <td>AC Milan vs. Arsenal</td>
+                  <td>12 Aprilie 2025</td>
+                  <td>San Siro</td>
+                </tr>
+                <tr>
+                  <td colspan="4" style="text-align: center">
+                    <b>Mai multe meciuri vor fi anunțate în curând!</b>
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="4">Datele și orele pot suferi modificări.</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
         </section>
 
         <section id="bilete">
@@ -80,6 +129,8 @@
             <p>Acceptăm plăți prin card bancar și transfer bancar.</p>
           </article>
         </section>
+
+        <section id="calendar">placeholder</section>
 
         <section id="informatii">
           <h2>Informații utile</h2>
@@ -117,56 +168,58 @@
               allowfullscreen
             ></iframe>
           </div>
-          <section id="indice-ocupare">
-            <h3>Pentru a afla cât de plin este stadionul folosim:</h3>
-            <math xmlns="http://www.w3.org/1998/Math/MathML">
-              <mrow>
-                <mi>Grad de ocupare</mi>
-                <mo>=</mo>
-                <mfrac>
-                  <mi>Bilete vândute</mi>
-                  <mi>Capacitate stadion</mi>
-                </mfrac>
-                <mo>x</mo>
-                <mn>100</mn>
-                <mo>%</mo>
-              </mrow>
-            </math>
-          </section>
-          <section id="real-vs-barca">
-            <h3>Ce preferi?</h3>
-            <p>Ce alegi? Real Madrid sau Barcelona?</p>
-            <img
-              id="imagine-real-barca"
-              src="./resurse/imagini/real-vs-barca.png"
-              alt="real-vs-barca"
-              usemap="#harta_imagine"
-              width="800"
-              height="800"
+        </section>
+
+        <section id="indice-ocupare">
+          <h3>Pentru a afla cât de plin este stadionul folosim:</h3>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <mrow>
+              <mi>Grad de ocupare</mi>
+              <mo>=</mo>
+              <mfrac>
+                <mi>Bilete vândute</mi>
+                <mi>Capacitate stadion</mi>
+              </mfrac>
+              <mo>x</mo>
+              <mn>100</mn>
+              <mo>%</mo>
+            </mrow>
+          </math>
+        </section>
+
+        <section id="real-vs-barca">
+          <h3>Ce preferi?</h3>
+          <p>Ce alegi? Real Madrid sau Barcelona?</p>
+          <img
+            id="imagine-real-barca"
+            src="./resurse/imagini/real-vs-barca.png"
+            alt="real-vs-barca"
+            usemap="#harta_imagine"
+            width="800"
+            height="800"
+          />
+
+          <map name="harta_imagine">
+            <area
+              shape="rect"
+              coords="0,0,400,800"
+              alt="Zona Stângă"
+              href="https://www.fcbarcelona.com/en/"
+              target="_blank"
             />
 
-            <map name="harta_imagine">
-              <area
-                shape="rect"
-                coords="0,0,400,800"
-                alt="Zona Stângă"
-                href="https://www.fcbarcelona.com/en/"
-                target="_blank"
-              />
-
-              <area
-                shape="rect"
-                coords="400,0,800,800"
-                alt="Zona Dreaptă"
-                href="https://www.realmadrid.com/en-US"
-                target="_blank"
-              />
-            </map>
-          </section>
+            <area
+              shape="rect"
+              coords="400,0,800,800"
+              alt="Zona Dreaptă"
+              href="https://www.realmadrid.com/en-US"
+              target="_blank"
+            />
+          </map>
         </section>
 
         <section id="contact">
-          <h2>Contact</h2>
+          <h2><i class="fa-solid fa-address-card"></i>Contact</h2>
           <p>
             Ai întrebări? <strong>Contactează-ne</strong> la
             <a href="mailto:support@goalgate.com">support@goalgate.com</a>.
@@ -226,6 +279,7 @@
       </div>
     </main>
     <footer>
+      <a href="#" title="mergi sus" id="link-top"><div id="triunghi"></div></a>
       <small>
         &copy; <time datetime="2025-03-03">3 martie 2025</time> GoalGate.
         <strong>Toate drepturile rezervate.</strong>

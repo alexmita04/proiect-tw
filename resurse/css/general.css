@@ -1,102 +1,254 @@
+html {
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+  transition: font-size 0.3s ease;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  --spatiere-pagina: 70px;
-  --spatiere-zone: 30px;
-  --albastru1: #8ecae6;
-  --albastru2: #219ebc;
-  --albastru3: #023047;
-  --portocaliu1: #ffb703;
-  --portocaliu2: #fb8500;
+  --culoare-main: #1b263b;
+  --culoare-2: #0d1b2a;
+  --culoare-3: #415a77;
+  --culoare-4: #778da9;
+  --culoare-5: #e0e1dd;
+  --spatiere-pagina: 5rem;
+  --spatiere-pagina-mediu: 1rem;
+  --spatiere-pagina-mic: 0.5rem;
+  --grid-gap: 1rem;
+  --grid-gap-mediu: 0.7rem;
+  padding-left: var(--spatiere-pagina);
+  padding-right: var(--spatiere-pagina);
+  background-color: var(--culoare-main);
+  color: var(--culoare-5);
 }
 
 header {
-  background-color: var(--portocaliu1);
-  border: solid 3px var(--albastru3);
-  border-radius: 10px;
+  background-color: var(--culoare-2);
+  border: var(--culoare-3) solid 1px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
 main {
-  padding-left: var(--spatiere-pagina);
-  padding-right: var(--spatiere-pagina);
-  background-color: var(--albastru1);
-  border: solid 2px var(--portocaliu2);
-  border-radius: 20px;
+  background-color: var(--culoare-main);
 }
 
 #grid-pagina {
   display: grid;
   grid-template-areas:
-    "despre despre meciuri"
-    "despre despre bilete"
-    "informatii informatii informatii"
-    "contact contact contact";
-  gap: 30px;
+    "despre despre despre despre"
+    "meciuri bilete bilete calendar"
+    "informatii informatii real-vs-barca real-vs-barca"
+    "indice-ocupare indice-ocupare real-vs-barca real-vs-barca"
+    "contact contact contact contact";
+  grid-gap: var(--grid-gap);
+}
+
+#grid-pagina > * {
+  border: var(--culoare-3) solid 2px;
+  border-radius: 20px;
+  padding: 20px;
 }
 
 #despre {
   grid-area: despre;
-  padding-left: var(--spatiere-zone);
-  padding-right: var(--spatiere-zone);
+  border: none;
 }
 
 #meciuri {
   grid-area: meciuri;
-  padding-left: var(--spatiere-zone);
-  padding-right: var(--spatiere-zone);
+}
+
+.tabel-container {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 5px inset var(--culoare-3);
+}
+
+th,
+td {
+  /* border: 1px solid #ddd; */
+  padding: 8px;
+  text-align: center;
+}
+
+thead tr {
+  background-color: var(--culoare-3);
+  color: white;
+}
+
+tbody tr:nth-child(even) {
+  border-bottom: 1px solid red;
+}
+
+tbody tr:nth-child(odd) {
+  border-bottom: 1px solid #2196f3;
+}
+
+tbody tr:hover {
+  outline: 5px solid rgba(0, 0, 0, 0.7);
+  transition: outline 0.5s ease-in-out;
+}
+
+caption {
+  caption-side: bottom;
+  font-style: italic;
+  padding: 10px;
 }
 
 #bilete {
   grid-area: bilete;
-  padding-left: var(--spatiere-zone);
-  padding-right: var(--spatiere-zone);
+}
+
+#calendar {
+  grid-area: calendar;
 }
 
 #informatii {
   grid-area: informatii;
-  padding-left: var(--spatiere-zone);
-  padding-right: var(--spatiere-zone);
 }
 
-.container-iframe iframe {
-  min-width: 300px;
-  max-width: 700px;
+math {
+  font-size: 20px;
 }
 
-#imagine-real-barca {
-  max-width: 1000px;
-  min-width: 300px;
-  height: 100%;
+mi {
+  font-style: italic;
+  color: var(--culoare-5);
+}
+
+mo {
+  font-weight: bold;
+  color: var(--culoare-4);
+}
+
+mfrac {
+  color: white;
+  font-weight: bold;
+}
+
+.container-iframe {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.container-iframe > iframe {
+  width: 100%;
+}
+
+.taburi-iframe {
+  display: flex;
+  /* justify-content: center;
+  align-items: center; */
+}
+
+.taburi-iframe > a {
+  display: block;
+  width: 200px;
+  height: 70px;
+  border: 1px solid var(--culoare-5);
+  background-color: var(--culoare-3);
+  text-align: center;
+  color: var(--culoare-5);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+#indice-ocupare {
+  grid-area: indice-ocupare;
+}
+
+#real-vs-barca {
+  grid-area: real-vs-barca;
 }
 
 #contact {
   grid-area: contact;
-  padding-left: var(--spatiere-zone);
-  padding-right: var(--spatiere-zone);
 }
 
 footer {
-  background-color: var(--portocaliu1);
-  border: solid 3px var(--albastru3);
-  border-radius: 10px;
+  background-color: var(--culoare-2);
+  border: var(--culoare-3) solid 1px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+#link-top {
+  position: fixed;
+  bottom: 0.3em;
+  opacity: 0.5;
+  left: 0.3em;
+  width: 3rem;
+  box-sizing: border-box;
+  height: 3rem;
+  line-height: 3rem;
+  text-align: center;
+  border: 5px solid grey;
+  border-top-color: red;
+  border-radius: 50%;
+  background: rgb(220, 220, 220);
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+}
+
+#link-top:hover {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+#triunghi {
+  height: 0px;
+  width: 0;
+  display: inline-block;
+  border-bottom: 1.5rem solid grey;
+  border-left: 1rem solid transparent;
+  border-right: 1rem solid transparent;
+  vertical-align: top;
+  transform: translateY(30%);
 }
 
 @media screen and (max-width: 1400px) {
+  html {
+    font-size: 0.9rem;
+  }
+
   body {
-    --spatiere-pagina: 50px;
+    padding-left: var(--spatiere-pagina-mediu);
+    padding-right: var(--spatiere-pagina-mediu);
   }
 
   #grid-pagina {
-    display: block;
-    /* background-color: black; */
-    gap: 20px;
+    grid-template-areas:
+      "despre despre despre"
+      "meciuri calendar calendar"
+      "bilete bilete bilete"
+      "informatii informatii informatii"
+      "indice-ocupare indice-ocupare indice-ocupare"
+      "real-vs-barca real-vs-barca real-vs-barca"
+      "contact contact contact";
+    grid-gap: var(--grid-gap-mediu);
   }
 }
 
 @media screen and (max-width: 600px) {
+  html {
+    font-size: 0.85rem;
+  }
+
   body {
-    --spatiere-pagina: 30px;
+    padding-left: var(--spatiere-pagina-mic);
+    padding-right: var(--spatiere-pagina-mic);
   }
 
   #grid-pagina {
-    gap: 10px;
+    display: block;
+  }
+
+  .tabel-container {
+    overflow-x: auto;
   }
 }
