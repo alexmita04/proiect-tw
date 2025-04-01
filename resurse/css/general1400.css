@@ -1,0 +1,20 @@
+html {
+  font-size: 0.9rem;
+}
+
+body {
+  padding-left: var(--spatiere-pagina-mediu);
+  padding-right: var(--spatiere-pagina-mediu);
+}
+
+#grid-pagina {
+  grid-template-areas:
+    "despre despre despre"
+    "meciuri calendar calendar"
+    "bilete bilete bilete"
+    "informatii informatii informatii"
+    "indice-ocupare indice-ocupare indice-ocupare"
+    "real-vs-barca real-vs-barca real-vs-barca"
+    "contact contact contact";
+  grid-gap: var(--grid-gap-mediu);
+}

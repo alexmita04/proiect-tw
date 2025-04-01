@@ -1,0 +1,16 @@
+html {
+  font-size: 0.85rem;
+}
+
+body {
+  padding-left: var(--spatiere-pagina-mic);
+  padding-right: var(--spatiere-pagina-mic);
+}
+
+#grid-pagina {
+  display: block;
+}
+
+.tabel-container {
+  overflow-x: auto;
+}
