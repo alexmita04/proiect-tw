@@ -1,0 +1,9 @@
+#despre-pagina-container {
+  text-align: center;
+}
+
+#despre-pagina-container video {
+  width: 80%;
+  max-width: 1000px;
+  min-width: 230px;
+}

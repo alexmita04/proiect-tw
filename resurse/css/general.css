@@ -23,6 +23,29 @@ body {
   color: var(--culoare-5);
 }
 
+a {
+  color: var(--culoare-4);
+}
+
+a:visited {
+  color: var(--culoare-3);
+}
+
+a:active {
+  border: 1px solid black;
+}
+
+a[href^="http"]::before {
+  font-family: Arial, sans-serif;
+  content: "\2BB3";
+  font-size: 1.5em;
+  margin-right: 0.5em;
+}
+
+a[href^="http"]:hover::before {
+  color: var(--culoare-5);
+}
+
 header {
   background-color: var(--culoare-2);
   border: var(--culoare-3) solid 1px;
@@ -32,6 +55,24 @@ header {
 
 main {
   background-color: var(--culoare-main);
+}
+
+main a {
+  background-image: radial-gradient(
+    circle,
+    rgb(195, 237, 255) 0%,
+    rgb(195, 237, 255) 40%,
+    transparent 80%,
+    transparent 100%
+  );
+  background-position: center;
+  background-size: 0 0;
+  background-repeat: no-repeat;
+  transition: background-size 1s ease-in-out;
+}
+
+main a:hover {
+  background-size: 100% 100%;
 }
 
 #grid-pagina {
@@ -172,11 +213,18 @@ mfrac {
   align-items: center;
   justify-content: center;
   text-decoration: none;
+  background-image: none;
+}
+
+.taburi-iframe .tab-iframe > a::before {
+  content: "";
+  margin-right: 0;
 }
 
 .taburi-iframe .tab-iframe > a:hover {
   box-shadow: none;
   transition: box-shadow 1s;
+  background-image: none;
 }
 
 .container-iframe iframe {

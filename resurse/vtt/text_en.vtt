@@ -1,0 +1,24 @@
+WEBVTT - CC Engleza
+
+STYLE
+::cue {
+    color: white;
+    background-color: transparent;
+    text-shadow: 2px 2px 2px black;
+}
+
+00:00.000 --> 00:03.000 position:50% align:middle
+GoalGate offers you the best experience alongside your favorite team.
+
+00:04.000 --> 00:08.000 position:50% align:middle
+It has never been easier to buy tickets to see your favorite team live.
+
+00:09.000 --> 00:13.000 position:90% align:end line:0
+Be part of the football show together with true fans!
+
+00:09.000 --> 00:13.000 position:10% align:start line:90
+GoalGate gives you instant access to tickets for the hottest matches.
+
+00:14.000 --> 00:18.000 position:50% align:middle
+With GoalGate, football is closer than ever!
+Book your seat in the stadium in just a few seconds.

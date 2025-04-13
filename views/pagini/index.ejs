@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ro">
+  <head>
+    <title>GoalGate</title>
+    <meta
+      name="keywords"
+      content="bilete fotbal, fotbal, stadion, cumpără bilete"
+    />
+    <meta
+      name="description"
+      content="Cumpara bilete la meciurile tale preferate de fotbal."
+    />
+    <%- include("../fragmente/head.ejs") %>
+  </head>
+  <body>
+    <%- include("../fragmente/header.ejs") %>
+    <main>
+      <div id="grid-pagina">
+        <section id="despre">
+          <h2>Bine ai venit pe GoalGate!</h2>
+          <p>
+            GoalGate îți aduce cele mai mari <b>meciuri</b> din
+            <b>fotbalul</b> mondial și național direct la un click distanță.
+          </p>
+          <figure>
+            <picture>
+              <source
+                media="(max-width: 600px)"
+                srcset="/resurse/imagini/stadion-mic.jpg"
+              />
+              <source
+                media="(max-width: 1024px)"
+                srcset="/resurse/imagini/stadion-mediu.jpg"
+              />
+              <img
+                src="/resurse/imagini/stadion.jpg"
+                alt="Imagine cu stadionul plin de suporteri"
+              />
+            </picture>
+            <figcaption>Un stadion plin de suporteri entuziasmați.</figcaption>
+          </figure>
+        </section>
+
+        <section id="meciuri">
+          <h2>Meciurile viitoare</h2>
+          <div class="tabel-container">
+            <table>
+              <caption>
+                Lista celor mai importante meciuri programate
+              </caption>
+              <thead>
+                <tr>
+                  <th>Competiție</th>
+                  <th>Echipe</th>
+                  <th>Data</th>
+                  <th>Stadion</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td rowspan="2"><i>Champions League</i></td>
+                  <td>Real Madrid vs. PSG</td>
+                  <td>10 Aprilie 2025</td>
+                  <td>Santiago Bernabéu</td>
+                </tr>
+                <tr>
+                  <td>Manchester City vs. Bayern</td>
+                  <td>11 Aprilie 2025</td>
+                  <td>Etihad Stadium</td>
+                </tr>
+                <tr>
+                  <td><i>Europa League</i></td>
+                  <td>AC Milan vs. Arsenal</td>
+                  <td>12 Aprilie 2025</td>
+                  <td>San Siro</td>
+                </tr>
+                <tr>
+                  <td colspan="4" style="text-align: center">
+                    <b>Mai multe meciuri vor fi anunțate în curând!</b>
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="4">Datele și orele pot suferi modificări.</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </section>
+
+        <section id="bilete">
+          <h2>Achiziționează <b>bilete</b></h2>
+          <article>
+            <h3>Tipuri de <b>bilete</b></h3>
+            <dl>
+              <dt><i>VIP</i></dt>
+              <dd>Locuri <i>premium</i> și servicii <i>exclusive</i>.</dd>
+              <dt>Standard</dt>
+              <dd>Bilete la preț accesibil.</dd>
+            </dl>
+          </article>
+          <article>
+            <h3>Metode de plată</h3>
+            <p>Acceptăm plăți prin card bancar și transfer bancar.</p>
+          </article>
+        </section>
+
+        <section id="calendar">
+          <p>placeholder</p>
+          <p><b>IP utilizator: <%- locals.ip %></b></p>
+        </section>
+
+        <section id="informatii">
+          <h2>Informații utile <i class="fa-solid fa-futbol fa-spin"></i></h2>
+          <p>
+            Respectați regulile de acces în <b>stadion</b> și verificați
+            facilitățile disponibile pentru suporteri.
+          </p>
+          <p>
+            Informatii transferuri jucatori:
+            <a href="https://www.transfermarkt.com/" target="_blank"
+              >TransferMarkt</a
+            >
+          </p>
+          <div class="container-iframe">
+            <div class="taburi-iframe">
+              <div class="tab-iframe">
+                <a
+                  href="https://www.youtube.com/embed/Y06C_XnnwBE"
+                  target="ifr-video"
+                  >Tur Stadion Bernabeu (Real Madrid)
+                </a>
+              </div>
+              <div class="tab-iframe">
+                <a
+                  href="https://www.youtube.com/embed/S3JpythFePg"
+                  target="ifr-video"
+                  >Tur Stadion Camp Nou (Barcelona)
+                </a>
+              </div>
+              <br />
+            </div>
+
+            <iframe
+              name="ifr-video"
+              src="https://www.youtube.com/embed/Y06C_XnnwBE"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </section>
+
+        <section id="indice-ocupare">
+          <h3>Pentru a afla cât de plin este stadionul folosim:</h3>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <mrow>
+              <mi>Grad de ocupare</mi>
+              <mo>=</mo>
+              <mfrac>
+                <mi>Bilete vândute</mi>
+                <mi>Capacitate stadion</mi>
+              </mfrac>
+              <mo>x</mo>
+              <mn>100</mn>
+              <mo>%</mo>
+            </mrow>
+          </math>
+        </section>
+
+        <section id="real-vs-barca">
+          <h3>Ce preferi?</h3>
+          <p>Ce alegi? Real Madrid sau Barcelona?</p>
+          <img
+            id="imagine-real-barca"
+            src="/resurse/imagini/real-vs-barca.png"
+            alt="real-vs-barca"
+            usemap="#harta_imagine"
+            width="800"
+            height="800"
+          />
+
+          <map name="harta_imagine">
+            <area
+              shape="rect"
+              coords="0,0,400,800"
+              alt="Zona Stângă"
+              href="https://www.fcbarcelona.com/en/"
+              target="_blank"
+            />
+
+            <area
+              shape="rect"
+              coords="400,0,800,800"
+              alt="Zona Dreaptă"
+              href="https://www.realmadrid.com/en-US"
+              target="_blank"
+            />
+          </map>
+        </section>
+
+        <section id="contact">
+          <h2><i class="fa-solid fa-address-card"></i>Contact</h2>
+          <p>
+            Ai întrebări? <strong>Contactează-ne</strong> la
+            <a href="mailto:support@goalgate.com">support@goalgate.com</a>.
+          </p>
+          <a href="/resurse/imagini/gg-contact.png" download="goalgate-telefon"
+            >Descarcă fișierul (Numar de telefon)</a
+          >
+          <section id="faq">
+            <h3>FAQ</h3>
+            <details>
+              <summary>Cât de devreme trebuie să cumpăr biletele?</summary>
+              <p>
+                Este recomandat să cumperi biletele cu cel puțin câteva zile
+                înainte de meci, dar biletele pot fi disponibile și în ziua
+                meciului, în funcție de disponibilitate.
+              </p>
+            </details>
+            <details>
+              <summary>Ce fac dacă am pierdut biletele electronice?</summary>
+              <p>
+                În cazul în care ai pierdut biletele electronice, contactează
+                echipa noastră de suport pentru a primi ajutor. Vom putea să îți
+                trimitem biletele din nou pe email.
+              </p>
+            </details>
+            <details>
+              <summary>Poti schimba sau anula biletele?</summary>
+              <p>
+                Din păcate, biletele nu pot fi schimbate sau anulate după ce au
+                fost emise. Te rugăm să verifici cu atenție selecția înainte de
+                a finaliza achiziția.
+              </p>
+            </details>
+            <details>
+              <summary>Ce se întâmplă dacă meciul este anulat?</summary>
+              <p>
+                În cazul în care meciul este anulat, vei primi un email cu
+                informații despre procesul de rambursare a biletelor sau
+                posibilele opțiuni de reprogramare.
+              </p>
+            </details>
+          </section>
+          <section id="contact-ghid-stadion">
+            <h3>Ghid stadion</h3>
+            <p>
+              Pentru fiecare meci la care achizitionezi bilet vei gasi un ghid
+              ca acesta:
+              <embed
+                src="/resurse/pdf/Estadio-Santiago-Bernabeu-Real-Madrid-Madrid-The-Stadium-Guide.pdf"
+                type="application/pdf"
+                width="600"
+                height="600"
+              />
+            </p>
+          </section>
+        </section>
+      </div>
+    </main>
+    <%- include('../fragmente/footer.ejs') %>
+  </body>
+</html>

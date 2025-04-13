@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ro">
+  <head>
+    <title>GoalGate Despre</title>
+    <meta
+      name="keywords"
+      content="bilete fotbal, fotbal, stadion, cumpără bilete"
+    />
+    <meta
+      name="description"
+      content="Cumpara bilete la meciurile tale preferate de fotbal."
+    />
+    <%- include("../fragmente/head.ejs") %>
+    <link rel="stylesheet" href="/resurse/css/despre.css" />
+  </head>
+  <body>
+    <%- include("../fragmente/header.ejs") %>
+    <main>
+      <div id="despre-pagina-container">
+        <h2>Pagina despre</h2>
+        <p>
+          Site-ul va fi dedicat exclusiv vânzării de bilete pentru meciurile de
+          fotbal. Utilizatorii vor putea vizualiza și achiziționa bilete pentru
+          meciuri naționale și internaționale, inclusiv pentru echipe de club și
+          meciuri amicale. Platforma va oferi opțiuni de filtrare avansate
+          pentru a selecta meciurile dorite, va include un ghid detaliat pentru
+          cumpărarea biletelor și va permite utilizatorilor să gestioneze
+          biletele printr-un portofel virtual. De asemenea, vor fi disponibile
+          informații utile despre accesul în stadion și facilități pentru
+          spectatori.
+        </p>
+        <video
+          controls="controls"
+          poster="/resurse/imagini/stadion.jpg"
+          preload="none"
+        >
+          <source src="/resurse/videos/video.mp4" type="video/mp4" />
+          <source src="/resurse/videos/video.webm" type="video/webm" />
+          <track
+            default
+            src="/resurse/vtt/text_ro.vtt"
+            kind="captions"
+            srclang="ro"
+            label="romana"
+          />
+          <track
+            src="/resurse/vtt/text_en.vtt"
+            kind="captions"
+            srclang="en"
+            label="engleza"
+          />
+        </video>
+      </div>
+    </main>
+    <%- include('../fragmente/footer.ejs') %>
+  </body>
+</html>
