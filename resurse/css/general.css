@@ -171,6 +171,7 @@ mfrac {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-decoration: none;
 }
 
 .taburi-iframe .tab-iframe > a:hover {
@@ -233,6 +234,11 @@ footer {
   transition: 0.3s ease-in-out;
 }
 
+#watermark,
+#absolut {
+  display: none;
+}
+
 #triunghi {
   /* height: 0px;
   width: 0;
@@ -245,4 +251,109 @@ footer {
   font-size: 30px;
   color: var(--culoare-4);
   font-weight: 800;
+}
+
+@media print {
+  body {
+    color: black;
+  }
+
+  header {
+    margin-top: 50%;
+  }
+
+  header h1 {
+    text-align: center;
+  }
+
+  nav ul.meniu {
+    display: block;
+  }
+
+  nav {
+    page-break-after: always;
+  }
+
+  #despre > figure {
+    display: none;
+  }
+
+  #informatii .container-iframe {
+    display: none;
+  }
+
+  #real-vs-barca #imagine-real-barca {
+    display: none;
+  }
+
+  #contact #contact-ghid-stadion {
+    display: none;
+  }
+
+  footer {
+    page-break-before: always;
+    /* margin-top: 50%; */
+  }
+
+  footer iframe {
+    display: none;
+  }
+
+  footer #link-top {
+    display: none;
+  }
+
+  #grid-pagina {
+    display: block;
+  }
+
+  a {
+    color: black;
+    text-decoration: none;
+  }
+
+  #absolut {
+    position: absolute;
+    display: inline-block;
+    bottom: 10%;
+    width: 70%;
+    height: 30px;
+    left: 15%;
+    overflow: visible;
+    border: 4px inset black;
+    text-align: center;
+  }
+
+  #watermark {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 4cm;
+    height: 1cm;
+    opacity: 0.4;
+    padding: 5px;
+    background: white;
+    border: 3px solid black;
+    border-radius: 10px;
+    color: rgba(0, 0, 0, 0.4);
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+  }
+}
+
+@page {
+  size: A4 portrait;
+  counter-increment: page;
+}
+
+@page :left {
+  margin-left: 3cm;
+  margin-right: 1cm;
+}
+
+@page :right {
+  margin-left: 1cm;
+  margin-right: 3cm;
 }
