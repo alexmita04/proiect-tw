@@ -1,0 +1,183 @@
+{
+  "cale_galerie": "resurse/imagini/galerie",
+  "imagini": [
+    {
+      "cale_fisier": "vara_1.png",
+      "titlu": "Stadion SoFi Los Angeles",
+      "alt": "Imagine cu stadionul Sofi, Los Angeles",
+      "luni": [
+        "aprilie",
+        "mai",
+        "iunie",
+        "iulie",
+        "august",
+        "septembrie",
+        "octombrie"
+      ],
+      "text_descriere": "Imagine impresionantă a stadionului SoFi din Los Angeles, unul dintre cele mai moderne stadioane din lume, perfectă pentru evenimente sportive de vară."
+    },
+    {
+      "cale_fisier": "vara_2.png",
+      "titlu": "Semifinala Campionat Mondial",
+      "alt": "Semifinala campionat mondial 2022 - Argentina vs Croatia",
+      "luni": [
+        "aprilie",
+        "mai",
+        "iunie",
+        "iulie",
+        "august",
+        "septembrie",
+        "octombrie"
+      ],
+      "text_descriere": "Captură dramatică din semifinala Campionatului Mondial 2022 între Argentina și Croația, un meci plin de emoții."
+    },
+    {
+      "cale_fisier": "vara_3.png",
+      "titlu": "Meci campionatul european",
+      "alt": "Stadion Germania Euro 2024",
+      "luni": [
+        "aprilie",
+        "mai",
+        "iunie",
+        "iulie",
+        "august",
+        "septembrie",
+        "octombrie"
+      ],
+      "text_descriere": "Atmosferă electrică pe un stadion din Germania în timpul Campionatului European de fotbal 2024."
+    },
+    {
+      "cale_fisier": "vara_4.png",
+      "titlu": "World Cup Qatar",
+      "alt": "Stadion Qatar de la campionatul mondial",
+      "luni": [
+        "aprilie",
+        "mai",
+        "iunie",
+        "iulie",
+        "august",
+        "septembrie",
+        "octombrie"
+      ],
+      "text_descriere": "Vedere panoramică a unuia dintre stadioanele moderne din Qatar, gazda Campionatului Mondial de Fotbal."
+    },
+    {
+      "cale_fisier": "vara_5.png",
+      "titlu": "Stadion Allianz Arena",
+      "alt": "Stadionul Allianz Arena din Muchen, Germania",
+      "luni": [
+        "aprilie",
+        "mai",
+        "iunie",
+        "iulie",
+        "august",
+        "septembrie",
+        "octombrie"
+      ],
+      "text_descriere": "Allianz Arena din München, Germania, iluminat în toată splendoarea sa, un adevărat simbol al fotbalului european."
+    },
+    {
+      "cale_fisier": "vara_6.png",
+      "titlu": "Campionatul mondial",
+      "alt": "Imagine cu fanii de pe stadion, la campionatul mondial",
+      "luni": [
+        "aprilie",
+        "mai",
+        "iunie",
+        "iulie",
+        "august",
+        "septembrie",
+        "octombrie"
+      ],
+      "text_descriere": "Fanii în delir pe stadion, creând o atmosferă de neuitat în timpul Campionatului Mondial de Fotbal."
+    },
+    {
+      "cale_fisier": "vara_7.png",
+      "titlu": "Euro 2024 - Spania",
+      "alt": "Imagine cu castigatoarea turneului european din 2024",
+      "luni": [
+        "aprilie",
+        "mai",
+        "iunie",
+        "iulie",
+        "august",
+        "septembrie",
+        "octombrie"
+      ],
+      "text_descriere": "Echipa Spaniei sărbătorind victoria la Campionatul European din 2024, un moment istoric pentru fotbalul spaniol."
+    },
+    {
+      "cale_fisier": "iarna_1.png",
+      "titlu": "UCL: Atalanta BC vs Villarreal CF",
+      "alt": "Meci champions league Atalanta vs Villareal",
+      "luni": ["noiembrie", "decembrie", "ianuarie", "februarie", "martie"],
+      "text_descriere": "Meci incitant din Liga Campionilor dintre Atalanta și Villarreal, disputat în condiții de iarnă."
+    },
+    {
+      "cale_fisier": "iarna_2.png",
+      "titlu": "Allianz Arena UCL",
+      "alt": "Meci pe Allianz arena in cupele campionilor",
+      "luni": ["noiembrie", "decembrie", "ianuarie", "februarie", "martie"],
+      "text_descriere": "Allianz Arena strălucind sub reflectoare în timpul unui meci de Liga Campionilor pe timp de iarnă."
+    },
+    {
+      "cale_fisier": "iarna_3.png",
+      "titlu": "Stadion ighetat",
+      "alt": "Stadion ighetat",
+      "luni": ["noiembrie", "decembrie", "ianuarie", "februarie", "martie"],
+      "text_descriere": "Stadion acoperit de zăpadă și gheață, prezentând frumusețea fotbalului de iarnă."
+    },
+    {
+      "cale_fisier": "iarna_4.png",
+      "titlu": "Nike Ordem V Hi-Vis",
+      "alt": "Imagine cu mingea Nike Ordem V Hi-Vis folosita iarna in competitiile europene",
+      "luni": ["noiembrie", "decembrie", "ianuarie", "februarie", "martie"],
+      "text_descriere": "Mingea Nike Ordem V Hi-Vis, special proiectată pentru vizibilitate ridicată în meciurile de iarnă."
+    },
+    {
+      "cale_fisier": "iarna_5.png",
+      "titlu": "Manchester City - UCL",
+      "alt": "Manchester City in cupele europene",
+      "luni": ["noiembrie", "decembrie", "ianuarie", "februarie", "martie"],
+      "text_descriere": "Manchester City în acțiune în Liga Campionilor pe timp de iarnă, într-un meci plin de tensiune."
+    },
+    {
+      "cale_fisier": "iarna_6.png",
+      "titlu": "Jude Bellingham",
+      "alt": "imagine cu Jude Bellingham la antrenament",
+      "luni": ["noiembrie", "decembrie", "ianuarie", "februarie", "martie"],
+      "text_descriere": "Jude Bellingham la antrenament pe timp de iarnă, demonstrând dedicarea sa față de fotbal."
+    },
+    {
+      "cale_fisier": "iarna_7.png",
+      "titlu": "Roberto Firmino",
+      "alt": "Imagine cu Roberto Firmino in cupele europene",
+      "luni": ["noiembrie", "decembrie", "ianuarie", "februarie", "martie"],
+      "text_descriere": "Roberto Firmino în meciuri europene de iarnă, demonstrând abilitățile sale tehnice remarcabile."
+    },
+    {
+      "cale_fisier": "semn_fotbal.png",
+      "titlu": "Semn Fotbal",
+      "alt": "Imagine cu un semn de circulatie pe care scrie fotbal",
+      "luni": [
+        "noiembrie",
+        "decembrie",
+        "ianuarie",
+        "februarie",
+        "martie",
+        "aprilie",
+        "mai",
+        "iunie",
+        "iulie",
+        "august",
+        "septembrie",
+        "octombrie"
+      ],
+      "text_descriere": "Imagine cu un semn de circulatie pe care scrie fotbal.",
+      "autor": "Nick Youngson",
+      "sursa": "Pix4free",
+      "link_sursa": "https://pix4free.org/photo/4058/football.html",
+      "licenta": "CC BY-SA 3.0"
+    }
+  ]
+}

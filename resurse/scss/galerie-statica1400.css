@@ -1,0 +1,9 @@
+#grid-galerie {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+#grid-galerie figure:nth-child(n) {
+  grid-area: unset;
+}
+
+/*# sourceMappingURL=galerie-statica1400.css.map */

@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
+const sharp = require("sharp");
 
 app = express();
 
@@ -13,6 +14,7 @@ console.log("Folderul curent de lucru: ", process.cwd());
 
 obGlobal = {
   obErori: null,
+  obImagini: null,
 };
 
 vect_foldere = ["temp", "backup", "temp1"];
@@ -42,6 +44,56 @@ function initErori() {
 
 initErori();
 
+function initImagini() {
+  var continut = fs
+    .readFileSync(path.join(__dirname, "resurse/json/galerie.json"))
+    .toString("utf-8");
+
+  obGlobal.obImagini = JSON.parse(continut);
+  let vImagini = obGlobal.obImagini.imagini;
+
+  let caleAbs = path.join(__dirname, obGlobal.obImagini.cale_galerie);
+  let caleAbsMediu = path.join(
+    __dirname,
+    obGlobal.obImagini.cale_galerie,
+    "mediu"
+  );
+  let caleAbsMic = path.join(__dirname, obGlobal.obImagini.cale_galerie, "mic");
+
+  if (!fs.existsSync(caleAbsMediu)) fs.mkdirSync(caleAbsMediu);
+  if (!fs.existsSync(caleAbsMic)) fs.mkdirSync(caleAbsMic);
+
+  //for (let i=0; i< vErori.length; i++ )
+  for (let imag of vImagini) {
+    [numeFis, ext] = imag.cale_fisier.split(".");
+    let caleFisAbs = path.join(caleAbs, imag.cale_fisier);
+    let caleFisMediuAbs = path.join(caleAbsMediu, numeFis + ".webp");
+    let caleFisMicAbs = path.join(caleAbsMic, numeFis + ".webp");
+    sharp(caleFisAbs).resize(300).toFile(caleFisMediuAbs);
+    sharp(caleFisAbs).resize(200).toFile(caleFisMicAbs);
+    imag.cale_fisier_mic = path.join(
+      "/",
+      obGlobal.obImagini.cale_galerie,
+      "mic",
+      numeFis + ".webp"
+    );
+    imag.cale_fisier_mediu = path.join(
+      "/",
+      obGlobal.obImagini.cale_galerie,
+      "mediu",
+      numeFis + ".webp"
+    );
+    imag.cale_fisier = path.join(
+      "/",
+      obGlobal.obImagini.cale_galerie,
+      imag.cale_fisier
+    );
+  }
+  // console.log(obGlobal.obImagini);
+}
+
+initImagini();
+
 function afisareEroare(res, identificator, titlu, text, imagine) {
   let eroare = obGlobal.obErori.info_erori.find(function (elem) {
     return elem.identificator == identificator;
@@ -69,7 +121,12 @@ function afisareEroare(res, identificator, titlu, text, imagine) {
 app.get(["/", "/index", "/home"], function (req, res) {
   res.render("pagini/index", {
     ip: req.ip,
+    imagini: obGlobal.obImagini.imagini,
   });
+});
+
+app.get("/galerie", function (req, res) {
+  res.render("pagini/galerie", { imagini: obGlobal.obImagini.imagini });
 });
 
 app.get("/favincon.ico", function (req, res) {
@@ -92,7 +149,7 @@ app.use("/*", function (req, res) {
   try {
     res.render("pagini" + req.originalUrl, function (err, rezultatRandare) {
       if (err) {
-        //   console.log(err);
+        console.log(err);
         if (err.message.startsWith("Failed to lookup view")) {
           afisareEroare(res, 404);
         } else {

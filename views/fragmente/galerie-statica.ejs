@@ -1,0 +1,43 @@
+<section id="galerie-statica">
+  <h2>Galerie</h2>
+  <div id="grid-galerie">
+    <% let d = new Date(); let vect_luni = ["ianuarie", "februarie", "martie",
+    "aprilie", "mai", "iunie", "iulie", "august", "septembrie", "octombrie",
+    "noiembrie", "decembrie"]; let luna_curenta = vect_luni[d.getMonth()]; let
+    imagini_filtrate = locals.imagini.filter(imag => imag.luni &&
+    imag.luni.includes(luna_curenta)); let maximum =
+    Math.min(Math.floor(imagini_filtrate.length / 3) * 3, 12); let counter = 0;
+    for (let imag of imagini_filtrate) { if (counter < maximum) { counter++; %>
+    <figure>
+      <picture>
+        <source
+          srcset="<%= imag.cale_fisier_mediu %>"
+          media="screen and (max-width: 1400px)"
+        />
+        <source
+          srcset="<%= imag.cale_fisier_mic %>"
+          media="screen and (max-width: 600px)"
+        />
+        <img
+          src="<%= imag.cale_fisier %>"
+          alt="<%= imag.alt %>"
+          title="<%= imag.text_descriere %>"
+        />
+      </picture>
+      <figcaption><%= imag.titlu %></figcaption>
+      <% if (imag.autor && imag.sursa && imag.link_sursa && imag.licenta) { %>
+      <p class="atributii">
+        Imagine de
+        <a href="<%= imag.link_sursa %>" target="_blank"><%= imag.autor %></a>,
+        licențiată sub
+        <span
+          href="https://creativecommons.org/licenses/by-sa/3.0/"
+          target="_blank"
+          ><%= imag.licenta %></span
+        >.
+      </p>
+      <% } %>
+    </figure>
+    <% } } %>
+  </div>
+</section>

@@ -1,0 +1,8 @@
+#grid-galerie {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  figure:nth-child(n) {
+    grid-area: unset;
+  }
+}
