@@ -1,0 +1,383 @@
+@charset "UTF-8";
+#grid-galerie {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
+  grid-row-gap: 0;
+  grid-column-gap: 0;
+}
+#grid-galerie figure {
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+  perspective: 1000px;
+  overflow: hidden;
+}
+#grid-galerie figure:nth-child(1) {
+  animation-delay: 0.3s;
+  border: 3px solid var(--culoare-4);
+  margin: 0;
+  transition: border-color 0.5s ease;
+  grid-area: 1/1/2/2;
+}
+#grid-galerie figure:nth-child(1) figcaption {
+  text-align: center;
+  transition: transform 1.1s ease;
+  transform-origin: center center;
+}
+#grid-galerie figure:nth-child(1) figcaption::before {
+  content: "α" ". ";
+}
+#grid-galerie figure:nth-child(1) img {
+  width: 100%;
+  transition: filter 1.1s ease, transform 0.8s ease, transform-style 0.8s ease;
+  transform-style: preserve-3d;
+}
+#grid-galerie figure:nth-child(1):hover {
+  border-color: var(--culoare-highlight);
+}
+#grid-galerie figure:nth-child(1):hover figcaption {
+  transform: scale(1.2);
+}
+#grid-galerie figure:nth-child(1):hover img {
+  filter: contrast(200%);
+  transform: rotateY(180deg);
+}
+#grid-galerie figure:nth-child(2) {
+  animation-delay: 0.6s;
+  border: 3px solid var(--culoare-4);
+  margin: 0;
+  transition: border-color 0.5s ease;
+  grid-area: 1/3/2/4;
+}
+#grid-galerie figure:nth-child(2) figcaption {
+  text-align: center;
+  transition: transform 1.1s ease;
+  transform-origin: center center;
+}
+#grid-galerie figure:nth-child(2) figcaption::before {
+  content: "β" ". ";
+}
+#grid-galerie figure:nth-child(2) img {
+  width: 100%;
+  transition: filter 1.1s ease, transform 0.8s ease, transform-style 0.8s ease;
+  transform-style: preserve-3d;
+}
+#grid-galerie figure:nth-child(2):hover {
+  border-color: var(--culoare-highlight);
+}
+#grid-galerie figure:nth-child(2):hover figcaption {
+  transform: scale(1.2);
+}
+#grid-galerie figure:nth-child(2):hover img {
+  filter: contrast(200%);
+  transform: rotateY(180deg);
+}
+#grid-galerie figure:nth-child(3) {
+  animation-delay: 0.9s;
+  border: 3px solid var(--culoare-4);
+  margin: 0;
+  transition: border-color 0.5s ease;
+  grid-area: 2/2/3/3;
+}
+#grid-galerie figure:nth-child(3) figcaption {
+  text-align: center;
+  transition: transform 1.1s ease;
+  transform-origin: center center;
+}
+#grid-galerie figure:nth-child(3) figcaption::before {
+  content: "γ" ". ";
+}
+#grid-galerie figure:nth-child(3) img {
+  width: 100%;
+  transition: filter 1.1s ease, transform 0.8s ease, transform-style 0.8s ease;
+  transform-style: preserve-3d;
+}
+#grid-galerie figure:nth-child(3):hover {
+  border-color: var(--culoare-highlight);
+}
+#grid-galerie figure:nth-child(3):hover figcaption {
+  transform: scale(1.2);
+}
+#grid-galerie figure:nth-child(3):hover img {
+  filter: contrast(200%);
+  transform: rotateY(180deg);
+}
+#grid-galerie figure:nth-child(4) {
+  animation-delay: 1.2s;
+  border: 3px solid var(--culoare-4);
+  margin: 0;
+  transition: border-color 0.5s ease;
+  grid-area: 3/1/4/2;
+}
+#grid-galerie figure:nth-child(4) figcaption {
+  text-align: center;
+  transition: transform 1.1s ease;
+  transform-origin: center center;
+}
+#grid-galerie figure:nth-child(4) figcaption::before {
+  content: "δ" ". ";
+}
+#grid-galerie figure:nth-child(4) img {
+  width: 100%;
+  transition: filter 1.1s ease, transform 0.8s ease, transform-style 0.8s ease;
+  transform-style: preserve-3d;
+}
+#grid-galerie figure:nth-child(4):hover {
+  border-color: var(--culoare-highlight);
+}
+#grid-galerie figure:nth-child(4):hover figcaption {
+  transform: scale(1.2);
+}
+#grid-galerie figure:nth-child(4):hover img {
+  filter: contrast(200%);
+  transform: rotateY(180deg);
+}
+#grid-galerie figure:nth-child(5) {
+  animation-delay: 1.5s;
+  border: 3px solid var(--culoare-4);
+  margin: 0;
+  transition: border-color 0.5s ease;
+  grid-area: 3/3/4/4;
+}
+#grid-galerie figure:nth-child(5) figcaption {
+  text-align: center;
+  transition: transform 1.1s ease;
+  transform-origin: center center;
+}
+#grid-galerie figure:nth-child(5) figcaption::before {
+  content: "ε" ". ";
+}
+#grid-galerie figure:nth-child(5) img {
+  width: 100%;
+  transition: filter 1.1s ease, transform 0.8s ease, transform-style 0.8s ease;
+  transform-style: preserve-3d;
+}
+#grid-galerie figure:nth-child(5):hover {
+  border-color: var(--culoare-highlight);
+}
+#grid-galerie figure:nth-child(5):hover figcaption {
+  transform: scale(1.2);
+}
+#grid-galerie figure:nth-child(5):hover img {
+  filter: contrast(200%);
+  transform: rotateY(180deg);
+}
+#grid-galerie figure:nth-child(6) {
+  animation-delay: 1.8s;
+  border: 3px solid var(--culoare-4);
+  margin: 0;
+  transition: border-color 0.5s ease;
+  grid-area: 4/2/5/3;
+}
+#grid-galerie figure:nth-child(6) figcaption {
+  text-align: center;
+  transition: transform 1.1s ease;
+  transform-origin: center center;
+}
+#grid-galerie figure:nth-child(6) figcaption::before {
+  content: "ζ" ". ";
+}
+#grid-galerie figure:nth-child(6) img {
+  width: 100%;
+  transition: filter 1.1s ease, transform 0.8s ease, transform-style 0.8s ease;
+  transform-style: preserve-3d;
+}
+#grid-galerie figure:nth-child(6):hover {
+  border-color: var(--culoare-highlight);
+}
+#grid-galerie figure:nth-child(6):hover figcaption {
+  transform: scale(1.2);
+}
+#grid-galerie figure:nth-child(6):hover img {
+  filter: contrast(200%);
+  transform: rotateY(180deg);
+}
+#grid-galerie figure:nth-child(7) {
+  animation-delay: 2.1s;
+  border: 3px solid var(--culoare-4);
+  margin: 0;
+  transition: border-color 0.5s ease;
+  grid-area: 5/1/6/2;
+}
+#grid-galerie figure:nth-child(7) figcaption {
+  text-align: center;
+  transition: transform 1.1s ease;
+  transform-origin: center center;
+}
+#grid-galerie figure:nth-child(7) figcaption::before {
+  content: "η" ". ";
+}
+#grid-galerie figure:nth-child(7) img {
+  width: 100%;
+  transition: filter 1.1s ease, transform 0.8s ease, transform-style 0.8s ease;
+  transform-style: preserve-3d;
+}
+#grid-galerie figure:nth-child(7):hover {
+  border-color: var(--culoare-highlight);
+}
+#grid-galerie figure:nth-child(7):hover figcaption {
+  transform: scale(1.2);
+}
+#grid-galerie figure:nth-child(7):hover img {
+  filter: contrast(200%);
+  transform: rotateY(180deg);
+}
+#grid-galerie figure:nth-child(8) {
+  animation-delay: 2.4s;
+  border: 3px solid var(--culoare-4);
+  margin: 0;
+  transition: border-color 0.5s ease;
+  grid-area: 5/3/6/4;
+}
+#grid-galerie figure:nth-child(8) figcaption {
+  text-align: center;
+  transition: transform 1.1s ease;
+  transform-origin: center center;
+}
+#grid-galerie figure:nth-child(8) figcaption::before {
+  content: "θ" ". ";
+}
+#grid-galerie figure:nth-child(8) img {
+  width: 100%;
+  transition: filter 1.1s ease, transform 0.8s ease, transform-style 0.8s ease;
+  transform-style: preserve-3d;
+}
+#grid-galerie figure:nth-child(8):hover {
+  border-color: var(--culoare-highlight);
+}
+#grid-galerie figure:nth-child(8):hover figcaption {
+  transform: scale(1.2);
+}
+#grid-galerie figure:nth-child(8):hover img {
+  filter: contrast(200%);
+  transform: rotateY(180deg);
+}
+#grid-galerie figure:nth-child(9) {
+  animation-delay: 2.7s;
+  border: 3px solid var(--culoare-4);
+  margin: 0;
+  transition: border-color 0.5s ease;
+  grid-area: 6/2/7/3;
+}
+#grid-galerie figure:nth-child(9) figcaption {
+  text-align: center;
+  transition: transform 1.1s ease;
+  transform-origin: center center;
+}
+#grid-galerie figure:nth-child(9) figcaption::before {
+  content: "ι" ". ";
+}
+#grid-galerie figure:nth-child(9) img {
+  width: 100%;
+  transition: filter 1.1s ease, transform 0.8s ease, transform-style 0.8s ease;
+  transform-style: preserve-3d;
+}
+#grid-galerie figure:nth-child(9):hover {
+  border-color: var(--culoare-highlight);
+}
+#grid-galerie figure:nth-child(9):hover figcaption {
+  transform: scale(1.2);
+}
+#grid-galerie figure:nth-child(9):hover img {
+  filter: contrast(200%);
+  transform: rotateY(180deg);
+}
+#grid-galerie figure:nth-child(10) {
+  animation-delay: 3s;
+  border: 3px solid var(--culoare-4);
+  margin: 0;
+  transition: border-color 0.5s ease;
+  grid-area: 7/1/8/2;
+}
+#grid-galerie figure:nth-child(10) figcaption {
+  text-align: center;
+  transition: transform 1.1s ease;
+  transform-origin: center center;
+}
+#grid-galerie figure:nth-child(10) figcaption::before {
+  content: "κ" ". ";
+}
+#grid-galerie figure:nth-child(10) img {
+  width: 100%;
+  transition: filter 1.1s ease, transform 0.8s ease, transform-style 0.8s ease;
+  transform-style: preserve-3d;
+}
+#grid-galerie figure:nth-child(10):hover {
+  border-color: var(--culoare-highlight);
+}
+#grid-galerie figure:nth-child(10):hover figcaption {
+  transform: scale(1.2);
+}
+#grid-galerie figure:nth-child(10):hover img {
+  filter: contrast(200%);
+  transform: rotateY(180deg);
+}
+#grid-galerie figure:nth-child(11) {
+  animation-delay: 3.3s;
+  border: 3px solid var(--culoare-4);
+  margin: 0;
+  transition: border-color 0.5s ease;
+  grid-area: 7/3/8/4;
+}
+#grid-galerie figure:nth-child(11) figcaption {
+  text-align: center;
+  transition: transform 1.1s ease;
+  transform-origin: center center;
+}
+#grid-galerie figure:nth-child(11) figcaption::before {
+  content: "λ" ". ";
+}
+#grid-galerie figure:nth-child(11) img {
+  width: 100%;
+  transition: filter 1.1s ease, transform 0.8s ease, transform-style 0.8s ease;
+  transform-style: preserve-3d;
+}
+#grid-galerie figure:nth-child(11):hover {
+  border-color: var(--culoare-highlight);
+}
+#grid-galerie figure:nth-child(11):hover figcaption {
+  transform: scale(1.2);
+}
+#grid-galerie figure:nth-child(11):hover img {
+  filter: contrast(200%);
+  transform: rotateY(180deg);
+}
+#grid-galerie figure:nth-child(12) {
+  animation-delay: 3.6s;
+  border: 3px solid var(--culoare-4);
+  margin: 0;
+  transition: border-color 0.5s ease;
+  grid-area: 8/2/9/3;
+}
+#grid-galerie figure:nth-child(12) figcaption {
+  text-align: center;
+  transition: transform 1.1s ease;
+  transform-origin: center center;
+}
+#grid-galerie figure:nth-child(12) figcaption::before {
+  content: "μ" ". ";
+}
+#grid-galerie figure:nth-child(12) img {
+  width: 100%;
+  transition: filter 1.1s ease, transform 0.8s ease, transform-style 0.8s ease;
+  transform-style: preserve-3d;
+}
+#grid-galerie figure:nth-child(12):hover {
+  border-color: var(--culoare-highlight);
+}
+#grid-galerie figure:nth-child(12):hover figcaption {
+  transform: scale(1.2);
+}
+#grid-galerie figure:nth-child(12):hover img {
+  filter: contrast(200%);
+  transform: rotateY(180deg);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

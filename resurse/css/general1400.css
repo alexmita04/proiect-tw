@@ -18,3 +18,11 @@ body {
     "contact contact contact";
   grid-gap: var(--grid-gap-mediu);
 }
+
+#contact {
+  display: block;
+}
+
+footer {
+  display: block;
+}

@@ -2,11 +2,13 @@ const express = require("express");
 const path = require("path");
 const fs = require("fs");
 const sharp = require("sharp");
+const sass = require("sass");
 
 app = express();
 
 app.set("view engine", "ejs");
 app.use("/resurse", express.static(path.join(__dirname, "resurse")));
+app.use("/node_modules", express.static(path.join(__dirname, "node_modules")));
 
 console.log("Folderul proiectului: ", __dirname);
 console.log("Calea fisierului index.js", __filename);
@@ -15,6 +17,9 @@ console.log("Folderul curent de lucru: ", process.cwd());
 obGlobal = {
   obErori: null,
   obImagini: null,
+  folderScss: path.join(__dirname, "resurse/scss"),
+  folderCss: path.join(__dirname, "resurse/css"),
+  folderBackup: path.join(__dirname, "backup"),
 };
 
 vect_foldere = ["temp", "backup", "temp1"];
@@ -24,6 +29,55 @@ for (let folder of vect_foldere) {
     fs.mkdirSync(caleFolder);
   }
 }
+
+function compileazaScss(caleScss, caleCss) {
+  // console.log("cale:", caleCss);
+  if (!caleCss) {
+    let numeFisExt = path.basename(caleScss);
+    let numeFis = numeFisExt.split(".")[0]; /// "a.scss"  -> ["a","scss"]
+    caleCss = numeFis + ".css";
+  }
+
+  if (!path.isAbsolute(caleScss))
+    caleScss = path.join(obGlobal.folderScss, caleScss);
+  if (!path.isAbsolute(caleCss))
+    caleCss = path.join(obGlobal.folderCss, caleCss);
+
+  let caleBackup = path.join(obGlobal.folderBackup, "resurse/css");
+  if (!fs.existsSync(caleBackup)) {
+    fs.mkdirSync(caleBackup, { recursive: true });
+  }
+
+  // la acest punct avem cai absolute in caleScss si  caleCss
+
+  let numeFisCss = path.basename(caleCss);
+  if (fs.existsSync(caleCss)) {
+    fs.copyFileSync(
+      caleCss,
+      path.join(obGlobal.folderBackup, "resurse/css", numeFisCss)
+    ); // +(new Date()).getTime()
+  }
+  rez = sass.compile(caleScss, { sourceMap: true });
+  fs.writeFileSync(caleCss, rez.css);
+  // console.log("Compilare SCSS", rez);
+}
+//compileazaScss("a.scss");
+vFisiere = fs.readdirSync(obGlobal.folderScss);
+for (let numeFis of vFisiere) {
+  if (path.extname(numeFis) == ".scss") {
+    compileazaScss(numeFis);
+  }
+}
+
+fs.watch(obGlobal.folderScss, function (eveniment, numeFis) {
+  console.log(eveniment, numeFis);
+  if (eveniment == "change" || eveniment == "rename") {
+    let caleCompleta = path.join(obGlobal.folderScss, numeFis);
+    if (fs.existsSync(caleCompleta)) {
+      compileazaScss(caleCompleta);
+    }
+  }
+});
 
 function initErori() {
   let continut = fs

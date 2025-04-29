@@ -1,0 +1,32 @@
+@use "../../node_modules/bootstrap/scss/bootstrap.scss" with (
+  $primary: #e0e1dd,
+  $secondary: #415a77,
+
+  $body-color: #e0e1dd,
+  $headings-color: #e0e1dd,
+
+  $grid-breakpoints: (
+    sm: 600px,
+    md: 1000px,
+    lg: 1400px,
+  ),
+
+  $border-radius: 0.4rem,
+  $border-radius-sm: 0.2rem,
+  $border-radius-lg: 0.5rem,
+
+  $h1-font-size: 2.4rem,
+  $h2-font-size: 2rem,
+  $h3-font-size: 1.8rem,
+  $h4-font-size: 1.55rem,
+  $h5-font-size: 1.3rem,
+  $h6-font-size: 1.1rem,
+
+  $font-family-sans-serif: (
+    "Poppins",
+    sans-serif,
+  ),
+
+  //extra
+  $btn-padding-y: 0.4rem
+);
