@@ -445,6 +445,9 @@ footer > div:nth-of-type(2) {
     font-weight: bold;
     font-size: 8px;
   }
+  #galerie-statica {
+    display: none;
+  }
 }
 
 @page {
