@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ro">
+  <head>
+    <title>GoalGate</title>
+    <meta
+      name="keywords"
+      content="bilete fotbal, fotbal, stadion, cumpără bilete"
+    />
+    <meta
+      name="description"
+      content="Cumpara bilete la meciurile tale preferate de fotbal."
+    />
+    <%- include("../fragmente/head.ejs") %>
+    <script src="/resurse/js/produse.js"></script>
+  </head>
+  <body>
+    <%- include("../fragmente/header.ejs") %>
+    <main>
+      <section>
+        <h2>Pagină produs</h2>
+        <article id="art-produs">
+          <h3><span class="nume"><%- locals.prod.nume %></span></h3>
+          <p>Pret: <span class="pret"><%- locals.prod.pret %> </span></p>
+          <p>
+            Descriere:
+            <span class="descriere"><%- locals.prod.descriere %> </span>
+          </p>
+          <p>
+            Categorie:
+            <span class="categorie"><%- locals.prod.categorie_mare %> </span>
+          </p>
+          <p>
+            Data eveniment:
+            <span class="categorie"><%- locals.prod.data_eveniment %> </span>
+          </p>
+          <figure class="imag-produs">
+            <img
+              src="/resurse/imagini/meciuri/<%- locals.prod.imagine_path %>"
+              alt="[imagine <%- locals.prod.nume %>]"
+            />
+          </figure>
+        </article>
+      </section>
+    </main>
+    <%- include('../fragmente/footer.ejs') %>
+  </body>
+</html>

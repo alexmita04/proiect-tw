@@ -3,6 +3,32 @@ const path = require("path");
 const fs = require("fs");
 const sharp = require("sharp");
 const sass = require("sass");
+const pg = require("pg");
+
+const Client = pg.Client;
+
+client = new Client({
+  database: "proiect",
+  user: "alexmita04",
+  password: "parola",
+  host: "localhost",
+  port: 5433,
+});
+
+client.connect();
+
+// client.query("select * from bilete", function (err, rezultat) {
+//   console.log(err);
+//   console.log(rezultat);
+// });
+
+// client.query(
+//   "select * from unnest(enum_range(null::CategorieMareEnum))",
+//   function (err, rezultat) {
+//     console.log(err);
+//     console.log(rezultat);
+//   }
+// );
 
 app = express();
 
@@ -181,6 +207,50 @@ app.get(["/", "/index", "/home"], function (req, res) {
 
 app.get("/galerie", function (req, res) {
   res.render("pagini/galerie", { imagini: obGlobal.obImagini.imagini });
+});
+
+app.get("/produse", function (req, res) {
+  // console.log(req.query.tip);
+  var conditieQuery = ""; // TO DO where din parametri
+  if (req.query.tip) {
+    conditieQuery = ` where categorie_mare='${req.query.tip}'`;
+  }
+
+  queryOptiuni = "select * from unnest(enum_range(null::CategorieMareEnum))";
+  client.query(queryOptiuni, function (err, rezOptiuni) {
+    // console.log(rezOptiuni);
+
+    queryProduse = "select * from bilete" + conditieQuery;
+    client.query(queryProduse, function (err, rez) {
+      if (err) {
+        console.log(err);
+        afisareEroare(res, 2);
+      } else {
+        res.render("pagini/produse", {
+          produse: rez.rows,
+          optiuni: rezOptiuni.rows,
+        });
+      }
+    });
+  });
+});
+
+app.get("/produs/:id", function (req, res) {
+  client.query(
+    `select * from bilete where id=${req.params.id}`,
+    function (err, rez) {
+      if (err) {
+        console.log(err);
+        afisareEroare(res, 2);
+      } else {
+        if (rez.rowCount == 0) {
+          afisareEroare(res, 404);
+        } else {
+          res.render("pagini/produs", { prod: rez.rows[0] });
+        }
+      }
+    }
+  );
 });
 
 app.get("/favincon.ico", function (req, res) {

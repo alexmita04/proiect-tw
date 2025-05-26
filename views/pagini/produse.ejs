@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ro">
+  <head>
+    <title>GoalGate</title>
+    <meta
+      name="keywords"
+      content="bilete fotbal, fotbal, stadion, cumpără bilete"
+    />
+    <meta
+      name="description"
+      content="Cumpara bilete la meciurile tale preferate de fotbal."
+    />
+    <%- include("../fragmente/head.ejs") %>
+    <script src="/resurse/js/produse.js"></script>
+  </head>
+  <body>
+    <%- include("../fragmente/header.ejs") %>
+    <main>
+      <div class="produse-container">
+        <label> Nume: <input type="text" id="inp-nume" /></label>
+        <!--<label> Maxim calorii: <input type="number" id="inp-calorii" value="10000"></label>-->
+        <div>
+          Capacitate stadion:
+          <p>
+            <label
+              >Mic (capacitate &lt; 35000)
+              <input id="i_rad1" name="cap_rad" value="0:35000" type="radio" />
+            </label>
+          </p>
+          <p>
+            <label
+              >Mediu (35000 &le; capacitate &lt; 50000)
+              <input
+                id="i_rad2"
+                name="cap_rad"
+                value="35000:50000"
+                type="radio"
+              />
+            </label>
+          </p>
+          <p>
+            <label
+              >Mare (50000 &le; capacitate)
+              <input
+                id="i_rad3"
+                name="cap_rad"
+                value="50000:120000"
+                type="radio"
+              />
+            </label>
+          </p>
+          <p>
+            <label
+              >Toate
+              <input
+                id="i_rad4"
+                checked
+                name="cap_rad"
+                value="toate"
+                type="radio"
+              />
+            </label>
+          </p>
+        </div>
+
+        <label>
+          Pret minim:
+          <span id="infoRangeMin">(0)</span
+          ><input
+            type="range"
+            id="inp-pret"
+            value="0"
+            min="0"
+            max="1000"
+          /><span id="infoRangeMax">(1000)</span>
+          <span id="infoRange"> - (0)</span></label
+        >
+        <label
+          >Select simplu:
+          <select id="inp-categorie">
+            <option id="sel-toate" selected value="toate">toate</option>
+            <% for (let opt of locals.optiuni) { %>
+            <option value="<%- opt.unnest %>"><%- opt.unnest %></option>
+            <% } %>
+          </select>
+        </label>
+
+        <p>
+          <button class="c1 c2 c3" id="filtrare">Filtreaza</button>
+          <button id="resetare">Reseteaza</button><br />
+          <button id="sortCrescNume">
+            Sorteaza crescator dupa pret si nume
+          </button>
+          <button id="sortDescrescNume">
+            Sorteaza descrescator dupa pret si nume
+          </button>
+        </p>
+
+        <p id="p-suma">
+          Apăsați Alt+"c" pentru suma preturilor produselor afișate.
+        </p>
+
+        <section id="produse">
+          <h2>Produse</h2>
+          <div class="grid-produse">
+            <% for( let prod of locals.produse) { %>
+            <article
+              class="produs <%= prod.categorie_mare %>"
+              id="elem_<%= prod.id %>"
+            >
+              <h3 class="nume">
+                Nume:
+                <a href="/produs/<%-prod.id %>"
+                  ><span class="val-nume"><%- prod.nume%></span></a
+                >
+              </h3>
+              <div class="info-prod">
+                <table>
+                  <tr>
+                    <td><p class="pret">Pret:</p></td>
+                    <td><span class="val-pret"><%- prod.pret%></span></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="capacitate">Capacitate stadion:</p>
+                    </td>
+                    <td>
+                      <span class="val-capacitate"
+                        ><%- prod.capacitate_stadion%></span
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="tip-acces">Tip Acces:</p>
+                    </td>
+                    <td>
+                      <span class="val-tip-acces"><%- prod.tip_acces%></span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="facilitati">Facilitati:</p>
+                    </td>
+                    <td>
+                      <span class="val-facilitati"><%- prod.facilitati%></span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="data_eveniment">
+                        Data meci: <% const data = new
+                        Date(prod.data_eveniment); const luni = ["Ianuarie",
+                        "Februarie", "Martie", "Aprilie", "Mai", "Iunie",
+                        "Iulie", "August", "Septembrie", "Octombrie",
+                        "Noiembrie", "Decembrie"]; const zile = ["Duminica",
+                        "Luni", "Marti", "Miercuri", "Joi", "Vineri",
+                        "Sambata"]; const zi = data.getDate(); const luna =
+                        luni[data.getMonth()]; const an = data.getFullYear();
+                        const ziSaptamana = zile[data.getDay()]; %>
+                      </p>
+                    </td>
+                    <td>
+                      <time
+                        class="val-data-eveniment"
+                        datetime="<%= data.toISOString().split('T')[0] %>"
+                      >
+                        <%= `${zi} ${luna} ${an} (${ziSaptamana})` %></time
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><p class="include_parcare">Parcare:</p></td>
+                    <td>
+                      <span class="val-parcare"
+                        ><%- prod.include_parcare ? "Da" : "Nu" %></span
+                      >
+                    </td>
+                  </tr>
+                </table>
+                <p id="descriere_produs_produse"><%= prod.descriere %></p>
+                <p class="categorie">
+                  Categorie:
+                  <span class="val-categorie"><%- prod.categorie_mare%></span>
+                </p>
+              </div>
+
+              <figure>
+                <a href="/produs/<%-prod.id %>"
+                  ><img
+                    src="/resurse/imagini/meciuri/<%- prod.imagine_path %>"
+                    style="width: 50%; height: auto"
+                    alt="[imagine <%- prod.nume %>]"
+                /></a>
+              </figure>
+              <label class="selecteaza-cos">
+                Selectează:<br />
+                <input
+                  type="checkbox"
+                  class="select-cos"
+                  value="<%-prod.id %>"
+                  autocomplete="off"
+                />
+              </label>
+            </article>
+            <% }%>
+          </div>
+        </section>
+      </div>
+    </main>
+    <%- include('../fragmente/footer.ejs') %>
+  </body>
+</html>
