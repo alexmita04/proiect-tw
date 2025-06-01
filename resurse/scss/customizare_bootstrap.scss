@@ -2,7 +2,7 @@
   $primary: #e0e1dd,
   $secondary: #415a77,
 
-  $body-color: #708b1c,
+  $body-color: #415a77,
   $headings-color: #e0e1dd,
 
   $grid-breakpoints: (
@@ -28,5 +28,9 @@
   ),
 
   //extra
-  $btn-padding-y: 0.4rem
+  $btn-padding-y: 0.4rem,
+  $form-range-thumb-width: 1.5rem,
+  $form-range-thumb-height: 1.5rem,
+  $form-range-thumb-bg: #e0e1dd,
+  $form-range-track-bg: #415a77
 );

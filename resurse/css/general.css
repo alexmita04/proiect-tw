@@ -139,8 +139,8 @@ main a:hover {
   border: 5px inset var(--culoare-3);
 }
 
-th,
-td {
+.tabel-container table th,
+.tabel-container table td {
   /* border: 1px solid #ddd; */
   padding: 8px;
   text-align: center;
@@ -148,25 +148,25 @@ td {
   border-right: 1px solid var(--culoare-5);
 }
 
-thead tr {
+.tabel-container table thead tr {
   background-color: var(--culoare-3);
   color: white;
 }
 
-tbody tr:nth-child(even) {
+.tabel-container table tbody tr:nth-child(even) {
   border-bottom: 1px solid red;
 }
 
-tbody tr:nth-child(odd) {
+.tabel-container table tbody tr:nth-child(odd) {
   border-bottom: 1px solid #2196f3;
 }
 
-tbody tr:hover {
+.tabel-container table tbody tr:hover {
   outline: 5px solid rgba(0, 0, 0, 0.7);
   transition: outline 0.5s ease-in-out;
 }
 
-caption {
+.tabel-container table caption {
   caption-side: bottom;
   font-style: italic;
   padding: 10px;

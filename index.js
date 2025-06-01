@@ -46,7 +46,19 @@ obGlobal = {
   folderScss: path.join(__dirname, "resurse/scss"),
   folderCss: path.join(__dirname, "resurse/css"),
   folderBackup: path.join(__dirname, "backup"),
+  optiuniMeniu: null,
 };
+
+client.query(
+  "SELECT unnest(enum_range(NULL::CategorieMareEnum)) AS categorie",
+  function (err, rezultat) {
+    if (err) {
+      console.error("Eroare la interogarea categoriei:", err);
+      process.exit(1);
+    }
+    obGlobal.optiuniMeniu = rezultat.rows;
+  }
+);
 
 vect_foldere = ["temp", "backup", "temp1"];
 for (let folder of vect_foldere) {
@@ -197,6 +209,26 @@ function afisareEroare(res, identificator, titlu, text, imagine) {
     imagine: imagineCustom,
   });
 }
+
+// app.use(async (req, res, next) => {
+//   try {
+//     const query =
+//       "SELECT unnest(enum_range(NULL::CategorieMareEnum)) AS categorie";
+//     const result = await client.query(query);
+//     res.locals.categorii_mari = result.rows.map((row) => row.categorie);
+//     // console.log(res.locals.categorii_mari);
+//   } catch (err) {
+//     console.error("Eroare la interogarea enumului:", err);
+//     res.locals.categorii_mari = []; // fallback gol
+//   }
+//   next();
+// });
+
+app.use(function (req, res, next) {
+  res.locals.optiuniMeniu = obGlobal.optiuniMeniu;
+
+  next();
+});
 
 app.get(["/", "/index", "/home"], function (req, res) {
   res.render("pagini/index", {

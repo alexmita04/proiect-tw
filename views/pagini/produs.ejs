@@ -16,29 +16,65 @@
   <body>
     <%- include("../fragmente/header.ejs") %>
     <main>
-      <section>
+      <section class="produs-container">
         <h2>Pagină produs</h2>
         <article id="art-produs">
           <h3><span class="nume"><%- locals.prod.nume %></span></h3>
-          <p>Pret: <span class="pret"><%- locals.prod.pret %> </span></p>
-          <p>
-            Descriere:
-            <span class="descriere"><%- locals.prod.descriere %> </span>
-          </p>
-          <p>
-            Categorie:
-            <span class="categorie"><%- locals.prod.categorie_mare %> </span>
-          </p>
-          <p>
-            Data eveniment:
-            <span class="categorie"><%- locals.prod.data_eveniment %> </span>
-          </p>
+
           <figure class="imag-produs">
             <img
               src="/resurse/imagini/meciuri/<%- locals.prod.imagine_path %>"
-              alt="[imagine <%- locals.prod.nume %>]"
+              alt="Imagine pentru <%- locals.prod.nume %>"
             />
           </figure>
+
+          <p>Pret: <span class="pret"><%- locals.prod.pret %> RON</span></p>
+
+          <p>
+            Descriere:
+            <span class="descriere"><%- locals.prod.descriere %></span>
+          </p>
+
+          <p>
+            Categorie:
+            <span class="categorie"><%- locals.prod.categorie_mare %></span>
+          </p>
+
+          <p>
+            Tip acces:
+            <span class="tip-acces"><%- locals.prod.tip_acces %></span>
+          </p>
+
+          <p>
+            Capacitate stadion:
+            <span class="capacitate"
+              ><%- locals.prod.capacitate_stadion %></span
+            >
+          </p>
+
+          <p>
+            Data eveniment:
+            <span class="data-eveniment"
+              ><%- locals.prod.data_eveniment %></span
+            >
+          </p>
+
+          <p>
+            Zonă acces:
+            <span class="zona-acces"><%- locals.prod.zona_acces %></span>
+          </p>
+
+          <p>
+            Facilități:
+            <span class="facilitati"><%- locals.prod.facilitati %></span>
+          </p>
+
+          <p>
+            Include parcare:
+            <span class="parcare"
+              ><%- locals.prod.include_parcare ? 'Da' : 'Nu' %></span
+            >
+          </p>
         </article>
       </section>
     </main>

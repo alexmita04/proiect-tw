@@ -41,8 +41,6 @@ CREATE TABLE bilete (
     include_parcare BOOLEAN DEFAULT FALSE
 );
 
-
-
 -- LaLiga
 INSERT INTO bilete (nume, descriere, imagine_path, categorie_mare, tip_acces, pret, capacitate_stadion, data_eveniment, zona_acces, facilitati, include_parcare)
 VALUES 

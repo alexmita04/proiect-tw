@@ -43,11 +43,11 @@
       </div>
       <ul class="submeniu">
         <li><a href="/produse">Toate</a></li>
-        <li><a href="/produse?tip=LaLiga">LaLiga</a></li>
-        <li><a href="/produse?tip=Champions League">Champions League</a></li>
-        <li><a href="/produse?tip=Europa League">Europa League</a></li>
-        <li><a href="/produse?tip=Premier League">Premier League</a></li>
-        <li><a href="/produse?tip=Superliga">Superliga</a></li>
+        <% for(let opt of locals.optiuniMeniu ) { %>
+        <li>
+          <a href="/produse?tip=<%= opt.categorie %>"><%= opt.categorie %></a>
+        </li>
+        <% } %>
       </ul>
     </li>
   </ul>
