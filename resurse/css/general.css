@@ -13,14 +13,22 @@ body {
   --culoare-4: #778da9;
   --culoare-5: #e0e1dd;
   --spatiere-pagina: 5rem;
-  --spatiere-pagina-mediu: 1rem;
-  --spatiere-pagina-mic: 0.5rem;
+  --spatiere-pagina-mediu: 3rem;
+  --spatiere-pagina-mic: 2rem;
   --grid-gap: 1rem;
   --grid-gap-mediu: 0.7rem;
   padding-left: var(--spatiere-pagina);
   padding-right: var(--spatiere-pagina);
   background-color: var(--culoare-main);
   color: var(--culoare-5);
+}
+
+body.dark {
+  --culoare-main: #e0e1dd;
+  --culoare-2: #0d1b2a;
+  --culoare-3: #415a77;
+  --culoare-4: #778da9;
+  --culoare-5: #1b263b;
 }
 
 a {
@@ -56,6 +64,7 @@ header {
 
 header h1 {
   margin: 0;
+  color: white;
 }
 
 main {
@@ -104,6 +113,9 @@ main a:hover {
   flex-direction: column;
   align-items: center;
 }
+#despre h2 {
+  color: var(--culoare-5);
+}
 
 #despre img {
   width: 100%;
@@ -123,6 +135,10 @@ main a:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+#meciuri h2 {
+  color: var(--culoare-5);
 }
 
 #meciuri caption {
@@ -177,6 +193,12 @@ main a:hover {
   /* display: flex;
   flex-direction: column;
   align-items: center; */
+  color: var(--culoare-5);
+}
+
+#bilete h2,
+#bilete h3 {
+  color: var(--culoare-5);
 }
 
 #calendar {
@@ -185,6 +207,10 @@ main a:hover {
 
 #informatii {
   grid-area: informatii;
+}
+
+#informatii h2 {
+  color: var(--culoare-5);
 }
 
 math {
@@ -271,6 +297,10 @@ mfrac {
   grid-area: indice-ocupare;
 }
 
+#indice-ocupare h3 {
+  color: var(--culoare-5);
+}
+
 #real-vs-barca {
   grid-area: real-vs-barca;
   display: flex;
@@ -289,6 +319,10 @@ mfrac {
   justify-content: space-between;
 }
 
+#contact h2 {
+  color: var(--culoare-5);
+}
+
 footer {
   background-color: var(--culoare-2);
   border: var(--culoare-3) solid 1px;
@@ -298,6 +332,7 @@ footer {
   /* align-items: center; */
   justify-content: space-between;
   padding: 20px;
+  color: white;
 }
 
 footer iframe {
@@ -392,6 +427,10 @@ footer > div:nth-of-type(2) {
 
   #contact #contact-ghid-stadion {
     display: none;
+  }
+
+  #contact #contact-ghid-stadion embed {
+    max-width: 800px;
   }
 
   footer {

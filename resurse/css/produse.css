@@ -121,4 +121,8 @@ input[type="radio"] {
   #produse .grid-produse {
     grid-template-columns: 1fr;
   }
+
+  .filtrare-container .row > div {
+    margin-bottom: 20px;
+  }
 }

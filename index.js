@@ -15,8 +15,12 @@ client = new Client({
   port: 5433,
 });
 
-client.connect();
-
+client.connect((err) => {
+  if (err) {
+    console.error("Eroare la conectarea la baza de date:", err);
+    process.exit(1); // Închide aplicația
+  }
+});
 // client.query("select * from bilete", function (err, rezultat) {
 //   console.log(err);
 //   console.log(rezultat);
