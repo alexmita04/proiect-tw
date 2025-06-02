@@ -21,12 +21,60 @@
         <article id="art-produs">
           <h3><span class="nume"><%- locals.prod.nume %></span></h3>
 
-          <figure class="imag-produs">
-            <img
-              src="/resurse/imagini/meciuri/<%- locals.prod.imagine_path %>"
-              alt="Imagine pentru <%- locals.prod.nume %>"
-            />
-          </figure>
+          <div
+            id="carouselProdus"
+            class="carousel slide"
+            data-bs-ride="carousel"
+          >
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img
+                  src="/resurse/imagini/meciuri/<%- locals.prod.imagine_path %>"
+                  class="d-block w-100"
+                  alt="Imagine principală <%- locals.prod.nume %>"
+                />
+              </div>
+              <div class="carousel-item">
+                <img
+                  src="/resurse/imagini/meciuri/<%- locals.prod.imagine_path.replace('.', '2.') %>"
+                  class="d-block w-100"
+                  alt="Imagine secundară 1 <%- locals.prod.nume %>"
+                />
+              </div>
+              <div class="carousel-item">
+                <img
+                  src="/resurse/imagini/meciuri/<%- locals.prod.imagine_path.replace('.', '3.') %>"
+                  class="d-block w-100"
+                  alt="Imagine secundară 2 <%- locals.prod.nume %>"
+                />
+              </div>
+            </div>
+
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#carouselProdus"
+              data-bs-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Anterior</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#carouselProdus"
+              data-bs-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Următor</span>
+            </button>
+          </div>
 
           <p>Pret: <span class="pret"><%- locals.prod.pret %> RON</span></p>
 

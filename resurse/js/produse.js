@@ -1,3 +1,8 @@
+// Variabile globale pentru paginare
+const K = 6;
+let paginaCurenta = 1;
+let produseVizibile = [];
+
 function valideazaInputuriText() {
   let inputuriText = document.querySelectorAll("input[type='text'], textarea");
 
@@ -12,11 +17,360 @@ function valideazaInputuriText() {
   return true;
 }
 
+function eliminaDiacritice(text) {
+  console.log(text);
+  return text
+    .replace(/ș/g, "s")
+    .replace(/ț/g, "t")
+    .replace(/ă/g, "a")
+    .replace(/â/g, "a")
+    .replace(/î/g, "i")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+}
+
+function actualizeazaProduseVizibile() {
+  let produse = document.getElementsByClassName("produs");
+  produseVizibile = [];
+
+  for (let prod of produse) {
+    if (prod.style.display !== "none") {
+      produseVizibile.push(prod);
+    }
+  }
+}
+
+function afiseazaPagina(numerePagina) {
+  paginaCurenta = numerePagina;
+
+  for (let prod of produseVizibile) {
+    prod.style.display = "none";
+  }
+
+  let indexStart = (paginaCurenta - 1) * K;
+  let indexEnd = Math.min(indexStart + K, produseVizibile.length);
+
+  for (let i = indexStart; i < indexEnd; i++) {
+    produseVizibile[i].style.display = "block";
+  }
+
+  actualizeazaInfoPaginare();
+  actualizeazaLinkuriPaginare();
+}
+
+function actualizeazaInfoPaginare() {
+  let indexStart = (paginaCurenta - 1) * K + 1;
+  let indexEnd = Math.min(paginaCurenta * K, produseVizibile.length);
+  let totalProduse = produseVizibile.length;
+
+  document.getElementById(
+    "info-paginare"
+  ).textContent = `${indexStart}-${indexEnd} din ${totalProduse}`;
+}
+
+function afiseazaPagina(numerePagina) {
+  paginaCurenta = numerePagina;
+
+  for (let prod of produseVizibile) {
+    prod.style.display = "none";
+  }
+
+  let indexStart = (paginaCurenta - 1) * K;
+  let indexEnd = Math.min(indexStart + K, produseVizibile.length);
+
+  for (let i = indexStart; i < indexEnd; i++) {
+    produseVizibile[i].style.display = "block";
+  }
+
+  actualizeazaInfoPaginare();
+  actualizeazaLinkuriPaginare();
+}
+
+function actualizeazaInfoPaginare() {
+  let indexStart = (paginaCurenta - 1) * K + 1;
+  let indexEnd = Math.min(paginaCurenta * K, produseVizibile.length);
+  let totalProduse = produseVizibile.length;
+
+  document.getElementById(
+    "info-paginare"
+  ).textContent = `${indexStart}-${indexEnd} din ${totalProduse}`;
+}
+
+function actualizeazaLinkuriPaginare() {
+  let containerLinkuri = document.getElementById("linkuri-paginare");
+  containerLinkuri.innerHTML = "";
+
+  if (produseVizibile.length <= K) {
+    document.getElementById("controale-paginare").style.display = "none";
+    return;
+  }
+
+  document.getElementById("controale-paginare").style.display = "flex";
+
+  let totalPagini = Math.ceil(produseVizibile.length / K);
+
+  let liPrev = document.createElement("li");
+  liPrev.className = `page-item ${paginaCurenta === 1 ? "disabled" : ""}`;
+  liPrev.innerHTML = `<a class="page-link" href="#" aria-label="Anterior">
+    <span aria-hidden="true">&laquo;</span>
+  </a>`;
+  if (paginaCurenta > 1) {
+    liPrev.addEventListener("click", function (e) {
+      e.preventDefault();
+      afiseazaPagina(paginaCurenta - 1);
+    });
+  }
+  containerLinkuri.appendChild(liPrev);
+
+  for (let i = 1; i <= totalPagini; i++) {
+    let li = document.createElement("li");
+    li.className = `page-item ${i === paginaCurenta ? "active" : ""}`;
+    li.innerHTML = `<a class="page-link" href="#">${i}</a>`;
+
+    li.addEventListener("click", function (e) {
+      e.preventDefault();
+      afiseazaPagina(i);
+    });
+
+    containerLinkuri.appendChild(li);
+  }
+
+  let liNext = document.createElement("li");
+  liNext.className = `page-item ${
+    paginaCurenta === totalPagini ? "disabled" : ""
+  }`;
+  liNext.innerHTML = `<a class="page-link" href="#" aria-label="Următor">
+    <span aria-hidden="true">&raquo;</span>
+  </a>`;
+  if (paginaCurenta < totalPagini) {
+    liNext.addEventListener("click", function (e) {
+      e.preventDefault();
+      afiseazaPagina(paginaCurenta + 1);
+    });
+  }
+  containerLinkuri.appendChild(liNext);
+}
+
+// function aplicaFiltrare() {
+//   if (!valideazaInputuriText()) return;
+
+//   let inpNume = document.getElementById("inp-nume").value.trim().toLowerCase();
+//   let minCapacitate = parseInt(document.getElementById("inp-capacitate").value);
+
+//   let vectRadioPret = document.getElementsByName("pret_rad");
+//   let minPret = null,
+//     maxPret = null;
+//   for (let rad of vectRadioPret) {
+//     if (rad.checked && rad.value !== "toate") {
+//       [minPret, maxPret] = rad.value.split(":").map(Number);
+//     }
+//   }
+
+//   let inpCategorie = document
+//     .getElementById("inp-categorie")
+//     .value.trim()
+//     .toLowerCase();
+//   let inpData = document.getElementById("inp-data").value;
+//   let includeParcare = document.getElementById("inp-parcare").checked;
+//   let inpFacilitati = document
+//     .getElementById("inp-facilitati")
+//     .value.toLowerCase()
+//     .split(",")
+//     .map((f) => f.trim())
+//     .filter((f) => f);
+
+//   let selectTipAcces = document.getElementById("inp-tip-acces");
+//   let tipuriAccesSelectate = Array.from(selectTipAcces.selectedOptions).map(
+//     (opt) => opt.value.toLowerCase()
+//   );
+
+//   let produse = document.getElementsByClassName("produs");
+//   for (let prod of produse) {
+//     let afiseaza = true;
+
+//     let nume = prod
+//       .getElementsByClassName("val-nume")[0]
+//       .innerHTML.toLowerCase();
+//     if (!eliminaDiacritice(nume).includes(eliminaDiacritice(inpNume)))
+//       afiseaza = false;
+
+//     let capacitate = parseInt(
+//       prod.getElementsByClassName("val-capacitate")[0].innerHTML
+//     );
+//     if (capacitate < minCapacitate) afiseaza = false;
+
+//     let pret = parseFloat(prod.getElementsByClassName("val-pret")[0].innerHTML);
+//     if (minPret != null && !(minPret <= pret && pret <= maxPret))
+//       afiseaza = false;
+
+//     let categorie = prod
+//       .getElementsByClassName("val-categorie")[0]
+//       .innerHTML.toLowerCase();
+//     if (
+//       eliminaDiacritice(inpCategorie) !== "toate" &&
+//       eliminaDiacritice(inpCategorie) !== eliminaDiacritice(categorie)
+//     )
+//       afiseaza = false;
+
+//     let dataProdus = prod
+//       .getElementsByClassName("val-data-eveniment")[0]
+//       .getAttribute("datetime");
+//     if (inpData && inpData !== dataProdus) afiseaza = false;
+
+//     let parcareProdus = prod
+//       .getElementsByClassName("val-parcare")[0]
+//       .innerHTML.trim()
+//       .toLowerCase();
+//     if (includeParcare && parcareProdus !== "da") afiseaza = false;
+
+//     let facilitatiProdus = prod
+//       .getElementsByClassName("val-facilitati")[0]
+//       .innerHTML.toLowerCase();
+//     if (
+//       inpFacilitati.length > 0 &&
+//       !inpFacilitati.every((f) => facilitatiProdus.includes(f))
+//     )
+//       afiseaza = false;
+
+//     let tipAccesProdus = prod
+//       .getElementsByClassName("val-tip-acces")[0]
+//       .innerHTML.trim()
+//       .toLowerCase();
+//     if (
+//       tipuriAccesSelectate.length > 0 &&
+//       !tipuriAccesSelectate.includes(tipAccesProdus)
+//     )
+//       afiseaza = false;
+
+//     prod.style.display = afiseaza ? "block" : "none";
+//   }
+
+//   actualizeazaProduseVizibile();
+
+//   let exista = produseVizibile.length > 0;
+//   document.getElementById("mesaj-nu-exista").style.display = exista
+//     ? "none"
+//     : "block";
+
+//   if (exista) {
+//     afiseazaPagina(1);
+//   } else {
+//     document.getElementById("controale-paginare").style.display = "none";
+//   }
+// }
+
+function aplicaFiltrare() {
+  if (!valideazaInputuriText()) return;
+
+  let inpNume = document.getElementById("inp-nume").value.trim().toLowerCase();
+  let minCapacitate = parseInt(document.getElementById("inp-capacitate").value);
+
+  let vectRadioPret = document.getElementsByName("pret_rad");
+  let minPret = null,
+    maxPret = null;
+  for (let rad of vectRadioPret) {
+    if (rad.checked && rad.value !== "toate") {
+      [minPret, maxPret] = rad.value.split(":").map(Number);
+    }
+  }
+
+  let inpCategorie = document
+    .getElementById("inp-categorie")
+    .value.trim()
+    .toLowerCase();
+  let inpData = document.getElementById("inp-data").value;
+  let includeParcare = document.getElementById("inp-parcare").checked;
+  let inpFacilitati = document
+    .getElementById("inp-facilitati")
+    .value.toLowerCase()
+    .split(",")
+    .map((f) => f.trim())
+    .filter((f) => f);
+
+  let selectTipAcces = document.getElementById("inp-tip-acces");
+  let tipuriAccesSelectate = Array.from(selectTipAcces.selectedOptions).map(
+    (opt) => opt.value.toLowerCase()
+  );
+
+  let produse = document.getElementsByClassName("produs");
+  for (let prod of produse) {
+    let afiseaza = true;
+
+    let nume = prod
+      .getElementsByClassName("val-nume")[0]
+      .innerHTML.toLowerCase();
+    // if (!nume.includes(inpNume)) afiseaza = false;
+    if (!eliminaDiacritice(nume).includes(eliminaDiacritice(inpNume)))
+      afiseaza = false;
+    let capacitate = parseInt(
+      prod.getElementsByClassName("val-capacitate")[0].innerHTML
+    );
+    if (capacitate < minCapacitate) afiseaza = false;
+
+    let pret = parseFloat(prod.getElementsByClassName("val-pret")[0].innerHTML);
+    if (minPret != null && !(minPret <= pret && pret <= maxPret))
+      afiseaza = false;
+
+    let categorie = prod
+      .getElementsByClassName("val-categorie")[0]
+      .innerHTML.toLowerCase();
+    if (inpCategorie !== "toate" && inpCategorie !== categorie)
+      afiseaza = false;
+
+    let dataProdus = prod
+      .getElementsByClassName("val-data-eveniment")[0]
+      .getAttribute("datetime");
+    if (inpData && inpData !== dataProdus) afiseaza = false;
+
+    let parcareProdus = prod
+      .getElementsByClassName("val-parcare")[0]
+      .innerHTML.trim()
+      .toLowerCase();
+    if (includeParcare && parcareProdus !== "da") afiseaza = false;
+
+    let facilitatiProdus = prod
+      .getElementsByClassName("val-facilitati")[0]
+      .innerHTML.toLowerCase();
+    // if (
+    //   inpFacilitati.length > 0 &&
+    //   !inpFacilitati.every((f) => facilitatiProdus.includes(f))
+    // )
+    //   afiseaza = false;
+    if (
+      inpFacilitati.length > 0 &&
+      !inpFacilitati.every((f) =>
+        eliminaDiacritice(facilitatiProdus).includes(eliminaDiacritice(f))
+      )
+    )
+      afiseaza = false;
+
+    let tipAccesProdus = prod
+      .getElementsByClassName("val-tip-acces")[0]
+      .innerHTML.trim()
+      .toLowerCase();
+    if (
+      tipuriAccesSelectate.length > 0 &&
+      !tipuriAccesSelectate.includes(tipAccesProdus)
+    )
+      afiseaza = false;
+
+    prod.style.display = afiseaza ? "block" : "none";
+  }
+
+  let exista = Array.from(produse).some((p) => p.style.display !== "none");
+  document.getElementById("mesaj-nu-exista").style.display = exista
+    ? "none"
+    : "block";
+}
+
 window.onload = function () {
   let containerProduse = document.querySelector(".grid-produse");
   let ordineInitiala = Array.from(
     document.getElementsByClassName("produs")
   ).map((p) => p.id);
+
+  actualizeazaProduseVizibile();
+  afiseazaPagina(1);
 
   btn = document.getElementById("filtrare");
   btn.onclick = function () {
@@ -122,7 +476,47 @@ window.onload = function () {
       if (cond1 && cond2 && cond3 && cond4 && cond5 && cond6 && cond7 && cond8)
         prod.style.display = "block";
     }
+
+    actualizeazaProduseVizibile();
+    let existaProdusAfisat = produseVizibile.length > 0;
+
+    let mesaj = document.getElementById("mesaj-nu-exista");
+    if (!existaProdusAfisat) {
+      mesaj.style.display = "block";
+      document.getElementById("controale-paginare").style.display = "none";
+    } else {
+      mesaj.style.display = "none";
+      afiseazaPagina(1);
+    }
   };
+
+  document.getElementById("inp-nume").addEventListener("input", aplicaFiltrare);
+  document
+    .getElementById("inp-categorie")
+    .addEventListener("change", aplicaFiltrare);
+  document
+    .getElementById("inp-data")
+    .addEventListener("change", aplicaFiltrare);
+  document
+    .getElementById("inp-capacitate")
+    .addEventListener("input", function () {
+      document.getElementById("infoCapacitate").innerHTML = `(${this.value})`;
+      aplicaFiltrare();
+    });
+  document
+    .getElementById("inp-parcare")
+    .addEventListener("change", aplicaFiltrare);
+  document
+    .getElementById("inp-facilitati")
+    .addEventListener("input", aplicaFiltrare);
+  document
+    .getElementById("inp-tip-acces")
+    .addEventListener("change", aplicaFiltrare);
+
+  let radios = document.getElementsByName("pret_rad");
+  for (let radio of radios) {
+    radio.addEventListener("change", aplicaFiltrare);
+  }
 
   // range capacitate onchange
   document.getElementById("inp-capacitate").onchange = function () {
@@ -133,6 +527,8 @@ window.onload = function () {
     if (!confirm("Ești sigur că vrei să resetezi filtrele?")) {
       return;
     }
+    // reset pentru mesajul ca nu exista produse
+    document.getElementById("mesaj-nu-exista").style.display = "none";
 
     // Reset nume
     document.getElementById("inp-nume").value = "";
@@ -172,7 +568,7 @@ window.onload = function () {
       prod.style.display = "block";
     }
 
-    // Restaurează ordinea inițială a produselor
+    // Restaurează ordinea initiala a produselor
     for (let id of ordineInitiala) {
       let prod = document.getElementById(id);
       containerProduse.appendChild(prod);
@@ -205,7 +601,7 @@ window.onload = function () {
         b.getElementsByClassName("val-capacitate")[0].innerHTML
       );
 
-      // evită împărțirea la 0
+      // evita impartirea la 0
       let raportA = pretA > 0 ? capA / pretA : 0;
       let raportB = pretB > 0 ? capB / pretB : 0;
 

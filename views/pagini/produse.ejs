@@ -13,6 +13,7 @@
     <%- include("../fragmente/head.ejs") %>
     <script src="/resurse/js/produse.js"></script>
   </head>
+
   <body>
     <%- include("../fragmente/header.ejs") %>
     <main>
@@ -25,6 +26,7 @@
                 type="text"
                 id="inp-nume"
                 class="form-control form-control-sm"
+                placeholder="ex: <%= produse.length > 0 ? produse[0].nume : '' %>"
               />
             </div>
 
@@ -45,6 +47,7 @@
                 id="inp-data"
                 name="data_eveniment"
                 class="form-control form-control-sm"
+                placeholder="ex: <%= produse.length > 0 ? new Date(produse[0].data_eveniment).toISOString().split('T')[0] : '' %>"
               />
               <datalist id="datalist-date">
                 <% const dateUnice = [...new Set(locals.produse.map(p => new
@@ -63,11 +66,11 @@
                 size="5"
                 class="form-select form-select-sm"
               >
-                <option value="vip">VIP</option>
-                <option value="tribuna">Tribună</option>
-                <option value="peluza">Peluză</option>
-                <option value="familie">Familie</option>
-                <option value="student">Student</option>
+                <% for (let opt of locals.tipuriAcces) { %>
+                <option value="<%= opt.tip_acces %>">
+                  <%= opt.tip_acces %>
+                </option>
+                <% } %>
               </select>
             </div>
 
@@ -75,7 +78,7 @@
               <textarea
                 id="inp-facilitati"
                 class="form-control"
-                placeholder="ex: restaurant, bar, jucători"
+                placeholder="ex: <%= produse.length > 0 ? produse[0].facilitati : '' %>"
               ></textarea>
               <label for="inp-facilitati">Facilități</label>
               <div class="invalid-feedback">
@@ -83,26 +86,35 @@
               </div>
             </div>
 
+            <% let minCapacitate = Math.min(...produse.map(p =>
+            p.capacitate_stadion)); %> <% let maxCapacitate =
+            Math.max(...produse.map(p => p.capacitate_stadion)); %>
             <div class="mb-sm-5 col-md-6 col-lg-4">
               <label for="inp-capacitate" class="form-label d-block">
-                Capacitate minimă: <span id="infoCapacitate">(0)</span>
+                Capacitate minimă:
+                <span id="infoCapacitate">(<%= minCapacitate %>)</span>
               </label>
               <input
                 type="range"
                 id="inp-capacitate"
                 class="form-range"
-                min="0"
-                max="120000"
+                min="<%= minCapacitate %>"
+                max="<%= maxCapacitate %>"
                 step="1000"
               />
               <div class="d-flex justify-content-between">
-                <span id="infoCapacitateMin">min(0)</span>
-                <span id="infoCapacitateMax">max(120000)</span>
+                <span id="infoCapacitateMin">min(<%= minCapacitate %>)</span>
+                <span id="infoCapacitateMax">max(<%= maxCapacitate %>)</span>
               </div>
             </div>
 
             <div class="mb-sm-5 col-md-6 col-lg-4">
               <label class="form-label d-block">Preț:</label>
+              <% let minPret = Math.min(...produse.map(p => p.pret)); let
+              maxPret = Math.max(...produse.map(p => p.pret)); let interval =
+              (maxPret - minPret) / 3; let prag1 = Math.round(minPret +
+              interval); let prag2 = Math.round(minPret + 2 * interval); %>
+
               <div
                 class="btn-group d-flex flex-wrap gap-2"
                 role="group"
@@ -114,12 +126,12 @@
                     class="btn-check"
                     name="pret_rad"
                     id="pret-mic"
-                    value="0:100"
+                    value="<%= minPret %>:<%= prag1 %>"
                     autocomplete="off"
                   />
-                  <label class="btn btn-outline-primary btn-sm" for="pret-mic"
-                    >Mic (&lt; 100)</label
-                  >
+                  <label class="btn btn-outline-primary btn-sm" for="pret-mic">
+                    Mic (< <%= prag1 %>)
+                  </label>
                 </div>
 
                 <div>
@@ -128,12 +140,15 @@
                     class="btn-check"
                     name="pret_rad"
                     id="pret-mediu"
-                    value="100:500"
+                    value="<%= prag1 %>:<%= prag2 %>"
                     autocomplete="off"
                   />
-                  <label class="btn btn-outline-primary btn-sm" for="pret-mediu"
-                    >Mediu (100 - 500)</label
+                  <label
+                    class="btn btn-outline-primary btn-sm"
+                    for="pret-mediu"
                   >
+                    Mediu (<%= prag1 %> - <%= prag2 %>)
+                  </label>
                 </div>
 
                 <div>
@@ -142,12 +157,12 @@
                     class="btn-check"
                     name="pret_rad"
                     id="pret-mare"
-                    value="500:100000"
+                    value="<%= prag2 %>:<%= maxPret %>"
                     autocomplete="off"
                   />
-                  <label class="btn btn-outline-primary btn-sm" for="pret-mare"
-                    >Mare (&gt; 500)</label
-                  >
+                  <label class="btn btn-outline-primary btn-sm" for="pret-mare">
+                    Mare (> <%= prag2 %>)
+                  </label>
                 </div>
 
                 <div>
@@ -160,14 +175,19 @@
                     autocomplete="off"
                     checked
                   />
-                  <label class="btn btn-outline-primary btn-sm" for="pret-toate"
-                    >Toate</label
+                  <label
+                    class="btn btn-outline-primary btn-sm"
+                    for="pret-toate"
                   >
+                    Toate
+                  </label>
                 </div>
               </div>
             </div>
 
             <div class="mb-sm-5 col-md-6 col-lg-4">
+              <% let nrCuParcare = produse.filter(p =>
+              p.include_parcare).length; %>
               <input
                 type="checkbox"
                 class="btn-check"
@@ -178,7 +198,7 @@
                 class="btn btn-outline-primary btn-sm w-100 text-start"
                 for="inp-parcare"
               >
-                Doar meciuri cu parcare inclusă
+                Doar meciuri cu parcare inclusă (<%= nrCuParcare %>)
               </label>
             </div>
           </div>
@@ -221,14 +241,27 @@
           Apăsați Alt+"c" pentru suma preturilor produselor afișate.
         </p>
 
+        <p id="mesaj-nu-exista" class="text-danger" style="display: none">
+          Nu există produse conform filtrării curente.
+        </p>
+
         <section id="produse">
           <h2>Produse</h2>
           <div class="grid-produse">
-            <% for( let prod of locals.produse) { %>
+            <% let celeMaiIeftine = {}; for (let p of produse) { let cat =
+            p.categorie_mare; if (!celeMaiIeftine[cat] || p.pret <
+            celeMaiIeftine[cat].pret) { celeMaiIeftine[cat] = p; } } %> <% for(
+            let prod of locals.produse) { %>
             <article
               class="produs <%= prod.categorie_mare %>"
               id="elem_<%= prod.id %>"
             >
+              <% if (celeMaiIeftine[prod.categorie_mare].id === prod.id) { %>
+              <div class="badge-ieftin">
+                Cel mai ieftin produs din categorie!
+              </div>
+              <% } %>
+
               <h3 class="nume">
                 Nume:
                 <a href="/produs/<%-prod.id %>"
@@ -326,6 +359,23 @@
             <% }%>
           </div>
         </section>
+
+        <!-- Container pentru controlele de paginare -->
+        <div
+          id="controale-paginare"
+          class="d-flex justify-content-between align-items-center my-3"
+          style="display: none !important"
+        >
+          <div class="d-flex align-items-center gap-2">
+            <span class="text-muted">Afișează produsele:</span>
+            <span id="info-paginare" class="fw-bold"></span>
+          </div>
+          <nav aria-label="Paginare produse">
+            <ul id="linkuri-paginare" class="pagination pagination-sm mb-0">
+              <!-- Linkurile vor fi generate dinamic -->
+            </ul>
+          </nav>
+        </div>
       </div>
     </main>
     <%- include('../fragmente/footer.ejs') %>

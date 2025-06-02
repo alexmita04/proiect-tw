@@ -253,18 +253,34 @@ app.get("/produse", function (req, res) {
   }
 
   queryOptiuni = "select * from unnest(enum_range(null::CategorieMareEnum))";
+  queryTipAcces = "SELECT DISTINCT tip_acces FROM bilete ORDER BY tip_acces";
   client.query(queryOptiuni, function (err, rezOptiuni) {
     // console.log(rezOptiuni);
 
     queryProduse = "select * from bilete" + conditieQuery;
-    client.query(queryProduse, function (err, rez) {
+    client.query(queryOptiuni, function (err, rezOptiuni) {
       if (err) {
         console.log(err);
         afisareEroare(res, 2);
       } else {
-        res.render("pagini/produse", {
-          produse: rez.rows,
-          optiuni: rezOptiuni.rows,
+        client.query(queryProduse, function (err, rezProduse) {
+          if (err) {
+            console.log(err);
+            afisareEroare(res, 2);
+          } else {
+            client.query(queryTipAcces, function (err, rezTipAcces) {
+              if (err) {
+                console.log(err);
+                afisareEroare(res, 2);
+              } else {
+                res.render("pagini/produse", {
+                  produse: rezProduse.rows,
+                  optiuni: rezOptiuni.rows,
+                  tipuriAcces: rezTipAcces.rows,
+                });
+              }
+            });
+          }
         });
       }
     });
